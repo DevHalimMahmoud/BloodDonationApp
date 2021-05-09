@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.blooddonationapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/iconapp"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BloodDonationApp">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_project"
+            android:theme="@style/Theme.BloodDonationApp.NoActionBar" />
+        <activity android:name=".ui.signUp.SignUp"
+            android:theme="@style/Theme.BloodDonationApp.NoActionBar"/>
+        <activity android:name=".ui.login.Login"
+            android:theme="@style/Theme.BloodDonationApp.NoActionBar"/>
+        <activity android:name=".SplashScreen"
+            android:theme="@style/Theme.BloodDonationApp.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

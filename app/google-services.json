@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "71223960487",
+    "firebase_url": "https://blood-donation-app-92caa-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "blood-donation-app-92caa",
+    "storage_bucket": "blood-donation-app-92caa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71223960487:android:381fb2a58863f36d30cc82",
+        "android_client_info": {
+          "package_name": "com.example.blooddonationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71223960487-371joka2u3fc67366fdl00bb3cvihpgc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIJuDlVerwb2s6TuhzXMo-_xPVBg-vEx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71223960487-371joka2u3fc67366fdl00bb3cvihpgc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
