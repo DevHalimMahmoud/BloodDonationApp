@@ -45,48 +45,54 @@ public class Login extends AppCompatActivity {
         Done_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                        .addOnCompleteListener((Activity) v.getContext(), new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    DocumentReference docRef = db.collection("users").document(mAuth.getUid().toString());
-                                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                            if (task.isSuccessful()) {
-                                                DocumentSnapshot document = task.getResult();
-                                                if (document.exists()) {
-                                                    if (document.get("user_type").toString().equals("user")) {
-                                                        FirebaseUser user = mAuth.getCurrentUser();
+                if (email.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please Enter Email And Password", Toast.LENGTH_SHORT).show();
 
-                                                        Intent in = new Intent(Login.this, MainActivity.class);
-                                                        startActivity(in);
 
-                                                    }else {Toast.makeText(getApplicationContext(), "User type not supported", Toast.LENGTH_SHORT).show();
-                                                        mAuth.signOut();}
+                } else {
+                    mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                            .addOnCompleteListener((Activity) v.getContext(), new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        DocumentReference docRef = db.collection("users").document(mAuth.getUid().toString());
+                                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot document = task.getResult();
+                                                    if (document.exists()) {
+                                                        if (document.get("user_type").toString().equals("user")) {
+                                                            FirebaseUser user = mAuth.getCurrentUser();
+
+                                                            Intent in = new Intent(Login.this, MainActivity.class);
+                                                            startActivity(in);
+
+                                                        } else {
+                                                            Toast.makeText(getApplicationContext(), "User type not supported", Toast.LENGTH_SHORT).show();
+                                                            mAuth.signOut();
+                                                        }
+                                                    } else {
+                                                        Toast.makeText(getApplicationContext(), "User type not supported", Toast.LENGTH_SHORT).show();
+                                                        mAuth.signOut();
+                                                    }
                                                 } else {
-                                                    Toast.makeText(getApplicationContext(), "User type not supported", Toast.LENGTH_SHORT).show();
-                                                    mAuth.signOut();
+                                                    Toast.makeText(getApplicationContext(), "Please try Again" + task.getException().toString(), Toast.LENGTH_SHORT).show();
                                                 }
-                                            } else {
-                                                Toast.makeText(getApplicationContext(), "Please try Again" + task.getException().toString(), Toast.LENGTH_SHORT).show();
                                             }
-                                        }
-                                    });
+                                        });
 
-                                } else {
-                                    // If sign in fails, display a message to the user.
+                                    } else {
+                                        // If sign in fails, display a message to the user.
 
 
-                                    Toast.makeText((Activity) v.getContext(), "Authentication failed." + task.getException().toString(),
-                                            Toast.LENGTH_SHORT).show();
+                                        Toast.makeText((Activity) v.getContext(), "Authentication failed." + task.getException().toString(),
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
-
-
+                            });
+                }
             }
         });
         Add_new_user.setOnClickListener(new View.OnClickListener() {

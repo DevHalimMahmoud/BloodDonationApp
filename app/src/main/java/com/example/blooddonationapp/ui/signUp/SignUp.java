@@ -68,7 +68,7 @@ public class SignUp extends AppCompatActivity {
 
 
                                                         mAuth.getCurrentUser().delete();
-                                                        
+
                                                     }
                                                 });
 
@@ -77,7 +77,7 @@ public class SignUp extends AppCompatActivity {
                                     }
                                 }
                             });
-                }else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Something Went Wrong, Please Enter All Your Data", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -88,7 +88,7 @@ public class SignUp extends AppCompatActivity {
     boolean NotEmpty() {
 
         if (textbox_Name.getText().toString().equals("") || textbox_Address.getText().toString().equals("") || textbox_Age.getText().toString().equals("") || textbox_National.getText().toString().equals("")
-                ) {
+        ) {
             return false;
         } else {
             return true;
