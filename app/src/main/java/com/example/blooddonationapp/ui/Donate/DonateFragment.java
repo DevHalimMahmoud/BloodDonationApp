@@ -16,20 +16,11 @@ import com.example.blooddonationapp.R;
 
 public class DonateFragment extends Fragment {
 
-    private DonateViewModel DonateViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DonateViewModel =
-                new ViewModelProvider(this).get(DonateViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_donate, container, false);
-        final TextView textView = root.findViewById(R.id.text_Donate);
-        DonateViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }

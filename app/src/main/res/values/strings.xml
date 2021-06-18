@@ -13,5 +13,6 @@
     <string name="menu_requestdonation">Request Donation</string>
     <string name="menu_settings">Setting</string>
     <string name="menu_about">About</string>
+    <string name="google_maps_key">AIzaSyCDzg_QY-v1B2dnMcn1cdTqcgxR-DOqzJI</string>
 
 </resources>

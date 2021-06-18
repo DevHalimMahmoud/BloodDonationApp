@@ -7,27 +7,47 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.blooddonationapp.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseAuth mAuth= FirebaseAuth.getInstance();;
+    TextView name, numberOfDonations,bloodType;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        name = root.findViewById(R.id.textView9);
+        numberOfDonations=root.findViewById(R.id.textView14);
+        bloodType=root.findViewById(R.id.textView11);
+        DocumentReference docRef = db.collection("users").document(Objects.requireNonNull(mAuth.getUid()));
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+
+                        name.setText(Objects.requireNonNull(document.get("name")).toString());
+                        numberOfDonations.setText(Objects.requireNonNull(document.get("num_of_donations")).toString());
+                        bloodType.setText(Objects.requireNonNull(document.get("blood_type")).toString());
+                    }
+
+
+                }
             }
         });
         return root;

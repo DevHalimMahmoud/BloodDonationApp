@@ -26,11 +26,11 @@ public class Recyclerview extends RecyclerView.Adapter<Recyclerview.ViewHolder> 
         FloatingActionButton face;
         String LinkFace[] =
                 {///link Email facebook
+                        "https://www.linkedin.com/in/abdelhalim-mahmoud", // abdelhalim mahmoud
+                        "https://web.facebook.com/profile.php?id=100011320336271", //mahmoud
                         "https://www.facebook.com/noww.raa",// nowraa
                         "https://www.facebook.com/profile.php?id=100008175133216",// heidi
                         "https://www.facebook.com/3zzEldin.Ayman",//ezz eldin
-                        "https://www.linkedin.com/in/abdelhalim-mahmoud", // abdelhalim mahmoud
-                        "https://web.facebook.com/profile.php?id=100011320336271", //mahmoud
                         "https://www.facebook.com/0114966214a",//ahmed hassan
                         "https://www.facebook.com/ahmed.sedky.9/",// ahmed sedky
                         "https://www.facebook.com/yousef.khaled.37819",// youssef khaled

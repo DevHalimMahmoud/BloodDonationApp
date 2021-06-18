@@ -1,37 +1,74 @@
 package com.example.blooddonationapp;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.blooddonationapp.ui.login.Login;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
+import com.example.blooddonationapp.ui.login.Login;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
+    private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private AppBarConfiguration mAppBarConfiguration;
-
+    TextView name, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAuth = FirebaseAuth.getInstance();
-        ;
+
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View view = navigationView.getHeaderView(0);
+
+        name = view.findViewById(R.id.header_name);
+        email = view.findViewById(R.id.header_email);
+        String email_t = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail().toString();
+        email.setText(email_t);
+
+
+        DocumentReference docRef = db.collection("users").document(Objects.requireNonNull(mAuth.getUid()));
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+
+                        name.setText(Objects.requireNonNull(document.get("name")).toString());
+
+                    }
+
+
+                }
+            }
+        });
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -45,8 +82,9 @@ public class MainActivity extends AppCompatActivity {
         });
         fab.hide();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+
         // Passing each menu ID as a set of Ids because each
+
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_Donate, R.id.nav_Request_Donation, R.id.nav_Settings, R.id.nav_About)

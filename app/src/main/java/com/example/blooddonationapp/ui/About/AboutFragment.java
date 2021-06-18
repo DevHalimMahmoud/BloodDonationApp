@@ -24,11 +24,11 @@ public class AboutFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View about = inflater.inflate(R.layout.fragment_about, container, false);
 ArrayList<ArrDataAbout> data_about= new ArrayList<ArrDataAbout>();
+        data_about.add( new ArrDataAbout("AbdelHalim Mahmoud","2018030258",R.drawable.abdehalim));
+        data_about.add( new ArrDataAbout("Mahmoud Ashraf","2018030143",R.drawable.mahmoud));
         data_about.add( new ArrDataAbout("Nowraa Hamdy Mahmoud","2018030163",R.drawable.nowraa));
         data_about.add( new ArrDataAbout("Heidi Mohamed Samir","2018030168",R.drawable.heidimohamed));
         data_about.add( new ArrDataAbout("Ezz Eldin Ayman","2018030216",R.drawable.ezz_eldin));
-        data_about.add( new ArrDataAbout("AbdelHalim Mahmoud","2018030258",R.drawable.abdehalim));
-        data_about.add( new ArrDataAbout("Mahmoud Ashraf","2018030143",R.drawable.mahmoud));
         data_about.add( new ArrDataAbout("Ahmed hassan maghwry ","2018030012",R.drawable.ahmedhassan));
         data_about.add( new ArrDataAbout("ahmed sedky mahmoud","2018030021",R.drawable.ahmedsedky));
         data_about.add( new ArrDataAbout("Youssef khaled mohamed","2018030176",R.drawable.youssef));
