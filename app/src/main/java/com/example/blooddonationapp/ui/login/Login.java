@@ -6,12 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
 import com.example.blooddonationapp.R;
-import com.example.blooddonationapp.ui.signUp.SignUp;
+import com.example.blooddonationapp.ui.SignUp.SignUp;
 import com.example.blooddonationapp.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,10 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Document;
-
-import io.perfmark.Tag;
 
 public class Login extends AppCompatActivity {
     TextView Add_new_user;
@@ -106,15 +101,5 @@ public class Login extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null){
-//            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//            startActivity(i);
-//            finish();
-//        }
-//    }
+
 }

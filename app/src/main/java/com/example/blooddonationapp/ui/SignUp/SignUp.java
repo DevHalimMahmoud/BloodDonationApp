@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.signUp;
+package com.example.blooddonationapp.ui.SignUp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
-import com.example.blooddonationapp.MainActivity;
 import com.example.blooddonationapp.R;
 import com.example.blooddonationapp.ui.login.Login;
 import com.google.android.gms.tasks.OnCompleteListener;

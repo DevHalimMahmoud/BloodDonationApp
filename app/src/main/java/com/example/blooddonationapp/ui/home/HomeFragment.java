@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.blooddonationapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,16 +24,17 @@ public class HomeFragment extends Fragment {
 
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private final FirebaseAuth mAuth= FirebaseAuth.getInstance();;
-    TextView name, numberOfDonations,bloodType;
+    private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+    TextView name, numberOfDonations, bloodType, donate, request_donation;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         name = root.findViewById(R.id.textView9);
-        numberOfDonations=root.findViewById(R.id.textView14);
-        bloodType=root.findViewById(R.id.textView11);
+        numberOfDonations = root.findViewById(R.id.textView14);
+        bloodType = root.findViewById(R.id.textView11);
         DocumentReference docRef = db.collection("users").document(Objects.requireNonNull(mAuth.getUid()));
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -45,11 +47,28 @@ public class HomeFragment extends Fragment {
                         numberOfDonations.setText(Objects.requireNonNull(document.get("num_of_donations")).toString());
                         bloodType.setText(Objects.requireNonNull(document.get("blood_type")).toString());
                     }
+                    donate = root.findViewById(R.id.donate);
+                    donate.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
+
+                            Navigation.findNavController(root).navigate(R.id.action_nav_home_to_nav_Donate);
+                        }
+                    });
+                    request_donation = root.findViewById(R.id.request_donation);
+                    request_donation.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Navigation.findNavController(root).navigate(R.id.action_nav_home_to_nav_Request_Donation);
+                        }
+                    });
 
                 }
             }
         });
+
         return root;
     }
+
 }

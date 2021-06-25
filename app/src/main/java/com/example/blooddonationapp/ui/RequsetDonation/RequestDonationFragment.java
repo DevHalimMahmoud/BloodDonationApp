@@ -28,7 +28,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -111,8 +110,13 @@ public class RequestDonationFragment extends Fragment {
 
                 holder.itemView.setOnClickListener(v -> {
 
-                    Snackbar.make(request_item, requestItem.getName() + ", " + requestItem.getLocation() + " at " + requestItem.getOrg_id(), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAbsoluteAdapterPosition());
+
+                    Intent intent = new Intent(getContext(), RequestForm.class);
+                    intent.putExtra("hotspot_id", snapshot.getId());
+                    intent.putExtra("org_id", requestItem.getOrg_id());
+
+                    startActivity(intent);
 
                 });
 
@@ -162,6 +166,7 @@ public class RequestDonationFragment extends Fragment {
             org_name = itemView.findViewById(R.id.org_name);
             aval_types = itemView.findViewById(R.id.aval_types);
             org_num = itemView.findViewById(R.id.org_num);
+
         }
 
         public void setMapLocation(double lat, double lon) {
@@ -223,7 +228,6 @@ public class RequestDonationFragment extends Fragment {
         request_adapter.startListening();
 
     }
-
 
 
 }

@@ -14,6 +14,7 @@ public class RequestItem {
     private String org_id;
     private String most_needed;
 
+
     public RequestItem(GeoPoint location, String name, String most_available, String org_id, String most_needed) {
         this.location = location;
         this.name = name;

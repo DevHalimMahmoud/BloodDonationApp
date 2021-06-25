@@ -27,11 +27,14 @@
             android:layout_height="150dp"
             android:clickable="true"
             android:focusable="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
             />
 
         <TextView
+
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,8 +65,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="abdomahmoud20070@gmail.com"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="aaaa"
+            android:textAlignment="center"
+
             android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.462"
             app:layout_constraintLeft_toRightOf="@id/email_t"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name" />
@@ -79,17 +87,22 @@
 
         <TextView
             android:id="@+id/org_num"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="abcd"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="aaaa"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            app:layout_constraintLeft_toRightOf="@id/password_t"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintLeft_toRightOf="@id/types_text"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/org_name" />
 
         <TextView
-            android:id="@+id/password_t"
+            android:id="@+id/types_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -103,11 +116,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="abcd"
+            android:gravity="center"
+            android:text="aaaa"
+            android:textAlignment="center"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/password_t"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintLeft_toRightOf="@id/types_text"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/org_num" />
+            app:layout_constraintTop_toBottomOf="@id/org_num"
+            app:layout_constraintVertical_bias="0.515" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
