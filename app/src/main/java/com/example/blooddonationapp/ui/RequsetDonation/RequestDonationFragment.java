@@ -188,6 +188,7 @@ public class RequestDonationFragment extends Fragment {
             // Update the mapView feature data and camera position.
             mGoogleMap.addMarker(new MarkerOptions().position(mMapLocation));
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(mMapLocation, 16f);
+
             mGoogleMap.moveCamera(cameraUpdate);
 
 
@@ -195,6 +196,7 @@ public class RequestDonationFragment extends Fragment {
 
         @Override
         public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
+
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             mGoogleMap = googleMap;
             MapsInitializer.initialize(itemView.getContext());
