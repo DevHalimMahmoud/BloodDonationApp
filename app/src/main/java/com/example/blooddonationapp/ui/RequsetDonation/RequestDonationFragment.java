@@ -113,8 +113,8 @@ public class RequestDonationFragment extends Fragment {
                     DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAbsoluteAdapterPosition());
 
                     Intent intent = new Intent(getContext(), RequestForm.class);
-                    intent.putExtra("hotspot_id", snapshot.getId());
-                    intent.putExtra("org_id", requestItem.getOrg_id());
+                    intent.putExtra("hotspot_id", snapshot.getId().toString());
+                    intent.putExtra("org_id", requestItem.getOrg_id().toString());
 
                     startActivity(intent);
 

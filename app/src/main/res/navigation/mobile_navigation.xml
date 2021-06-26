@@ -37,7 +37,11 @@
         android:id="@+id/nav_Request_Donation"
         android:name="com.example.blooddonationapp.ui.RequsetDonation.RequestDonationFragment"
         android:label="@string/menu_requestdonation"
-        tools:layout="@layout/fragment_request_donation" />
+        tools:layout="@layout/fragment_request_donation" >
+        <action
+            android:id="@+id/action_nav_Request_Donation_to_requestForm"
+            app:destination="@id/requestForm" />
+    </fragment>
     <fragment
         android:id="@+id/nav_Settings"
         android:name="com.example.blooddonationapp.ui.Settings.SettingsFragment"
@@ -48,4 +52,9 @@
         android:name="com.example.blooddonationapp.ui.About.AboutFragment"
         android:label="@string/menu_about"
         tools:layout="@layout/fragment_about" />
+    <activity
+        android:id="@+id/requestForm"
+        android:name="com.example.blooddonationapp.ui.RequsetDonation.RequestForm"
+        android:label="activity_request_form"
+        tools:layout="@layout/activity_request_form" />
 </navigation>
