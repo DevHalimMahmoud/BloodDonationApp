@@ -66,7 +66,7 @@ public class RequestForm extends AppCompatActivity {
                     Map<String, Object> data = new HashMap<>();
                     data.put("amount", amount.getText().toString());
                     data.put("reason", reason.getText().toString());
-                    data.put("status", 0);
+                    data.put("status", "pending");
                     data.put("user_id", mAuth.getCurrentUser().getUid().toString());
                     data.put("org_id", intent.getStringExtra("org_id"));
                     data.put("hotspot_id", intent.getStringExtra("hotspot_id"));
