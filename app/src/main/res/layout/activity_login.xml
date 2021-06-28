@@ -28,7 +28,7 @@
     <EditText
         android:hint="Password"
         android:textColor="@color/purple_200"
-        android:id="@+id/TextPassword"
+        android:id="@+id/set_password"
         android:layout_width="260dp"
         android:layout_height="36dp"
         android:drawableStart="@drawable/ic_lock_24"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/set_password" />
 
     <TextView
         android:id="@+id/Add_new_user"

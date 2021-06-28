@@ -1,13 +1,21 @@
 package com.example.blooddonationapp.ui.SignUp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.blooddonationapp.R;
 import com.example.blooddonationapp.ui.login.Login;
@@ -21,6 +29,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.ContentValues.TAG;
 
 public class SignUp extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -54,8 +64,16 @@ public class SignUp extends AppCompatActivity {
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
-                                                        Toast.makeText(getApplicationContext(), "User Created Successfully", Toast.LENGTH_LONG).show();
-
+                                                        Toast.makeText(getApplicationContext(), "User Created Successfully Pleas Verify your E-mail", Toast.LENGTH_LONG).show();
+                                                        mAuth.getCurrentUser().sendEmailVerification()
+                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                        if (task.isSuccessful()) {
+                                                                            Log.d(TAG, "Email sent.");
+                                                                        }
+                                                                    }
+                                                                });
                                                         Intent in = new Intent(SignUp.this, Login.class);
                                                         startActivity(in);
                                                     }
@@ -96,27 +114,27 @@ public class SignUp extends AppCompatActivity {
 
 
     Map<String, Object> data_map() {
-        Map<String, Object> city = new HashMap<>();
-        city.put("user_type", "user");
-        city.put("name", textbox_Name.getText().toString());
-        city.put("age", textbox_Age.getText().toString());
-        city.put("national_id", textbox_National.getText().toString());
-        city.put("address", textbox_Address.getText().toString());
-        city.put("blood_type", Spinner_BloodType1.getSelectedItem().toString() + Spinner_BloodType2.getSelectedItem().toString());
-
+        Map<String, Object> UserData = new HashMap<>();
+        UserData.put("user_type", "user");
+        UserData.put("name", textbox_Name.getText().toString());
+        UserData.put("age", textbox_Age.getText().toString());
+        UserData.put("national_id", textbox_National.getText().toString());
+        UserData.put("address", textbox_Address.getText().toString());
+        UserData.put("blood_type", Spinner_BloodType1.getSelectedItem().toString() + Spinner_BloodType2.getSelectedItem().toString());
+        UserData.put("num_of_donations", 0);
         if (male.isChecked()) {
-            city.put("gender", "male");
+            UserData.put("gender", "male");
         } else {
-            city.put("gender", "female");
+            UserData.put("gender", "female");
         }
         if (checkBox1.isChecked() || checkBox2.isChecked() || checkBox3.isChecked() || checkBox4.isChecked() ||
                 checkBox5.isChecked() || checkBox6.isChecked() || checkBox7.isChecked() || checkBox8.isChecked() || checkBox9.isChecked() || checkBox10.isChecked()) {
-            city.put("can_donate", false);
+            UserData.put("can_donate", false);
 
         } else {
-            city.put("can_donate", true);
+            UserData.put("can_donate", true);
         }
-        return city;
+        return UserData;
     }
 
     void dataBinding() {
@@ -133,7 +151,7 @@ public class SignUp extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         sign_up = findViewById(R.id.sign_up);
         textbox_Email = (EditText) findViewById(R.id.TextEmail);
-        textbox_Password = (EditText) findViewById(R.id.TextPassword);
+        textbox_Password = (EditText) findViewById(R.id.set_password);
         textbox_Name = (EditText) findViewById(R.id.TextName);
         textbox_Age = (EditText) findViewById(R.id.numberAge);
         textbox_National = (EditText) findViewById(R.id.TextNational);

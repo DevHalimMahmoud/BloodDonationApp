@@ -35,7 +35,7 @@
     <fragment
 
         android:id="@+id/nav_Request_Donation"
-        android:name="com.example.blooddonationapp.ui.RequsetDonation.RequestDonationFragment"
+        android:name="com.example.blooddonationapp.ui.RequestDonation.RequestDonationFragment"
         android:label="@string/menu_requestdonation"
         tools:layout="@layout/fragment_request_donation" >
         <action
@@ -54,7 +54,7 @@
         tools:layout="@layout/fragment_about" />
     <activity
         android:id="@+id/requestForm"
-        android:name="com.example.blooddonationapp.ui.RequsetDonation.RequestForm"
+        android:name="com.example.blooddonationapp.ui.RequestDonation.RequestForm"
         android:label="activity_request_form"
         tools:layout="@layout/activity_request_form" />
 </navigation>

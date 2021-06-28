@@ -1,6 +1,5 @@
-package com.example.blooddonationapp.ui.RequsetDonation;
+package com.example.blooddonationapp.ui.RequestDonation;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.firestore.GeoPoint;
 
 public class RequestItem {

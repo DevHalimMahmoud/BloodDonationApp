@@ -36,7 +36,7 @@ public class Login extends AppCompatActivity {
         Add_new_user = findViewById(R.id.Add_new_user);
         Done_login = findViewById(R.id.Done_login);
         email = findViewById(R.id.TextEmail);
-        password = findViewById(R.id.TextPassword);
+        password = findViewById(R.id.set_password);
         Done_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +73,7 @@ public class Login extends AppCompatActivity {
                                                         mAuth.signOut();
                                                     }
                                                 } else {
-                                                    Toast.makeText(getApplicationContext(), "Please try Again" + task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getApplicationContext(), "Please try Again" + task.getException(), Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         });

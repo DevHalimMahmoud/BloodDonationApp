@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/TextPassword"
+                android:id="@+id/set_password"
                 android:layout_width="260dp"
                 android:layout_height="36dp"
                 android:layout_gravity="center"

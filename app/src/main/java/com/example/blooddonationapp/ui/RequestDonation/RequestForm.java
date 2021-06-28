@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.RequsetDonation;
+package com.example.blooddonationapp.ui.RequestDonation;
 
 import android.content.Intent;
 import android.os.Bundle;
