@@ -1,6 +1,8 @@
 package com.example.blooddonationapp.ui.Donate;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -29,7 +32,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -111,8 +113,18 @@ public class DonateFragment extends Fragment {
 
                 holder.itemView.setOnClickListener(v -> {
 
-                    Snackbar.make(request_item, requestItem.getName() + ", " + requestItem.getLocation() + " at " + requestItem.getOrg_id(), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setMessage("You Donate Directly To Donation Centers")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //do things
+                                    Toast.makeText(root.getApplicationContext(), "Thanks for Making The Wold a Better Place! ", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
 
                 });
 
@@ -162,7 +174,7 @@ public class DonateFragment extends Fragment {
             org_name = itemView.findViewById(R.id.org_name);
             needed_types = itemView.findViewById(R.id.aval_types);
             org_num = itemView.findViewById(R.id.org_num);
-            types_text=itemView.findViewById(R.id.types_text);
+            types_text = itemView.findViewById(R.id.types_text);
             types_text.setText("Needed Types:");
         }
 

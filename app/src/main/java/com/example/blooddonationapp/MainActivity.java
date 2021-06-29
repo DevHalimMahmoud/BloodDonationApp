@@ -1,12 +1,12 @@
 package com.example.blooddonationapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +22,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -75,19 +74,27 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+
+                intent.setData(Uri.parse("mailto:abdomahmoud20060@gmail.com")); // only email apps should handle this
+                intent.putExtra(Intent.EXTRA_SUBJECT, mAuth.getCurrentUser().getUid().toString());
+                intent.putExtra(Intent.EXTRA_TEXT, "Write The Problem Here");
+
+                startActivity(intent);
+
 
             }
         });
-        fab.hide();
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         // Passing each menu ID as a set of Ids because each
 
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_Donate, R.id.nav_Request_Donation, R.id.nav_Settings, R.id.nav_About)
+                R.id.nav_home, R.id.nav_Donate, R.id.nav_Request_Donation,R.id.nav_my_requests, R.id.nav_Settings, R.id.nav_About)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
