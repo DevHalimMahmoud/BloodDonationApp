@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodDonationApp">
 
-
+        <uses-library android:name="android.test.runner"
+            android:required="false" />
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
