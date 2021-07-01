@@ -158,7 +158,7 @@ public class SettingsFragment extends Fragment {
     }
 
 
-    void ResetPassword(View root) {
+    public void ResetPassword(View root) {
 
         password.setOnClickListener(new View.OnClickListener() {
             @Override

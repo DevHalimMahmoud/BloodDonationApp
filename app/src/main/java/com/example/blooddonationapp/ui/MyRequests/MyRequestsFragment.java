@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blooddonationapp.R;
+import com.firebase.ui.database.FirebaseArray;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SnapshotMetadata;
 
 import java.util.Objects;
 
@@ -59,7 +62,7 @@ public class MyRequestsFragment extends Fragment {
 
     private void getRequestsList(Context root) {
         Query query = db.collection("requests").whereEqualTo("user_id", mAuth.getCurrentUser().getUid().toString());
-
+        
         FirestoreRecyclerOptions<MyRequestItem> response = new FirestoreRecyclerOptions.Builder<MyRequestItem>()
                 .setQuery(query, MyRequestItem.class)
                 .build();
@@ -75,6 +78,7 @@ public class MyRequestsFragment extends Fragment {
                 holder.reason.setText(myrequestitem.getReason());
 
                 DocumentReference orgDocRef = db.collection("users").document(myrequestitem.getOrg_id().toString());
+
                 orgDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -109,7 +113,7 @@ public class MyRequestsFragment extends Fragment {
                     }
                 });
 
-//                
+//
 
             }
 
