@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment {
                     if (document.exists()) {
 
                         name.setText(Objects.requireNonNull(document.get("name")).toString());
-                        numberOfDonations.setText(Objects.requireNonNull(document.get("num_of_donations")).toString());
+                        numberOfDonations.setText(Objects.requireNonNull(document.get("num_of_donation")).toString());
                         bloodType.setText(Objects.requireNonNull(document.get("blood_type")).toString());
                     }
                     donate = root.findViewById(R.id.donate);

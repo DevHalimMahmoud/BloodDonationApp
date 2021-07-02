@@ -121,7 +121,7 @@ public class SignUp extends AppCompatActivity {
         UserData.put("national_id", textbox_National.getText().toString());
         UserData.put("address", textbox_Address.getText().toString());
         UserData.put("blood_type", Spinner_BloodType1.getSelectedItem().toString() + Spinner_BloodType2.getSelectedItem().toString());
-        UserData.put("num_of_donations", 0);
+        UserData.put("num_of_donation", 0);
         if (male.isChecked()) {
             UserData.put("gender", "male");
         } else {
