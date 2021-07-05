@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="casual"
-        android:text="Fill the form to complete your request"
+        android:text="@string/fill_the_form_to_complete_your_request"
         android:textColor="@color/red"
 
         android:textSize="20sp"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="10dp"
-            android:text="Blood type" />
+            android:text="@string/blood_type" />
 
         <Spinner
             android:id="@+id/BloodType1"
@@ -68,7 +68,7 @@
         android:layout_margin="16dp"
         android:background="@drawable/style"
         android:ems="7"
-        android:hint="   Amount in ml   "
+        android:hint="@string/amount_in_ml"
         android:inputType="number"
         android:textAlignment="center"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -84,7 +84,7 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="16dp"
         android:fontFamily="casual"
-        android:text="Reason For your request"
+        android:text="@string/reason_for_your_request"
         android:textColor="@color/red"
         android:textSize="17sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -100,7 +100,7 @@
         android:background="@drawable/style"
         android:ems="10"
         android:gravity="center_horizontal"
-        android:hint="Explain the medical condition that require blood and if the blood is not for you provide the information about the person that will recive the blood in more than 100 word "
+        android:hint="@string/explain_the_medical_condition_that_require_blood_and_if_the_blood_is_not_for_you_provide_the_information_about_the_person_that_will_recive_the_blood_in_more_than_100_word"
         android:importantForAutofill="no"
         android:inputType="text|textMultiLine"
         android:textStyle="bold"
@@ -115,7 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="I Agree to share My Profile Data With This Organization"
+        android:text="@string/i_agree_to_share_my_profile_data_with_this_organization"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/amount"
         tools:layout_editor_absoluteX="18dp"
@@ -128,7 +128,7 @@
         android:layout_margin="50dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/style_button"
-        android:text="Send Request"
+        android:text="@string/send_request"
         android:textColor="@color/white"
         app:backgroundTint='#B31217'
         app:layout_constraintLeft_toLeftOf="parent"

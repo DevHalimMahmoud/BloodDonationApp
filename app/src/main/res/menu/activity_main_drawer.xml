@@ -11,23 +11,23 @@
         <item
             android:id="@+id/nav_Donate"
             android:icon="@drawable/ic_hand_holding_water"
-            android:title="Donate" />
+            android:title="@string/donate" />
         <item
             android:id="@+id/nav_Request_Donation"
             android:icon="@drawable/ic_hand_holding_heart"
-            android:title="Request Donation" />
+            android:title="@string/request_donation" />
         <item
             android:id="@+id/nav_my_requests"
             android:icon="@drawable/ic_baseline_library_books_24"
 
-            android:title="My Requests" />
+            android:title="@string/my_requests" />
         <item
             android:id="@+id/nav_Settings"
             android:icon="@drawable/ic_settings_24"
-            android:title="Settings" />
+            android:title="@string/settings" />
         <item
             android:id="@+id/nav_About"
             android:icon="@drawable/ic_info_24"
-            android:title="About" />
+            android:title="@string/about" />
     </group>
 </menu>

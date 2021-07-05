@@ -17,9 +17,10 @@
         tools:ignore="MissingConstraints,NotSibling">
 
         <LinearLayout
+
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:orientation="vertical"
@@ -32,10 +33,12 @@
                 android:layout_height="36dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
+                android:gravity="center"
 
+                android:textAlignment="gravity"
                 android:background="@drawable/style"
                 android:ems="10"
-                android:hint="  E-mail"
+                android:hint="@string/e_mail"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,11 +52,14 @@
                 android:layout_height="36dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
-
                 android:background="@drawable/style"
+
                 android:ems="10"
-                android:hint="  Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
+                android:gravity="center"
+
+                android:textAlignment="gravity"
                 android:textColor="@color/purple_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.543"
@@ -61,6 +67,9 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
+                android:gravity="center"
+
+                android:textAlignment="gravity"
                 android:id="@+id/TextName"
                 android:layout_width="260dp"
                 android:layout_height="36dp"
@@ -69,7 +78,7 @@
 
                 android:background="@drawable/style"
                 android:ems="10"
-                android:hint="  Name"
+                android:hint="@string/name"
                 android:inputType="text"
 
                 android:textColor="@color/black"
@@ -82,13 +91,15 @@
                 android:id="@+id/numberAge"
                 android:layout_width="260dp"
                 android:layout_height="36dp"
+                android:gravity="center"
 
+                android:textAlignment="gravity"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
 
                 android:background="@drawable/style"
                 android:ems="10"
-                android:hint="  Age"
+                android:hint="@string/age"
                 android:inputType="number"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,6 +109,9 @@
                 tools:ignore="MissingConstraints" />
 
             <EditText
+                android:gravity="center"
+
+                android:textAlignment="gravity"
                 android:id="@+id/TextNational"
                 android:layout_width="260dp"
                 android:layout_height="36dp"
@@ -106,7 +120,7 @@
                 android:background="@drawable/style"
 
                 android:ems="10"
-                android:hint="National ID Number"
+                android:hint="@string/national_id_number"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
@@ -123,9 +137,11 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/style"
+                android:gravity="center"
 
+                android:textAlignment="gravity"
                 android:ems="10"
-                android:hint="Address"
+                android:hint="@string/address"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
@@ -147,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="10dp"
-                    android:text="Blood type" />
+                    android:text="@string/blood_type" />
 
                 <Spinner
                     android:id="@+id/BloodType1"
@@ -187,13 +203,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gender " />
+                        android:text="@string/gender" />
 
                     <RadioButton
                         android:id="@+id/radioButton"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
-                        android:text="Male"
+                        android:text="@string/male"
 
                         />
 
@@ -202,7 +218,7 @@
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:checked="false"
-                        android:text="Female" />
+                        android:text="@string/female" />
 
                 </RadioGroup>
             </LinearLayout>
@@ -211,69 +227,69 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="Do  you have any of the following conditions  ?"
-                android:textSize="20dp" />
+                android:text="@string/do_you_have_any_of_the_following_conditions"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Cancer" />
+                android:text="@string/cancer" />
 
             <CheckBox
                 android:id="@+id/checkBox2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cardiac disease" />
+                android:text="@string/cardiac_disease" />
 
             <CheckBox
                 android:id="@+id/checkBox3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lung disease" />
+                android:text="@string/lung_disease" />
 
             <CheckBox
                 android:id="@+id/checkBox4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="hepatitis B and C" />
+                android:text="@string/hepatitis_b_and_c" />
 
             <CheckBox
                 android:id="@+id/checkBox10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HIV infaction " />
+                android:text="@string/hiv_infection" />
 
             <CheckBox
                 android:id="@+id/checkBox5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="AIDS or Sexually Transmitted Diseases (STD)" />
+                android:text="@string/aids_or_sexually_transmitted_diseases_std" />
 
             <CheckBox
                 android:id="@+id/checkBox6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chronic alcoholism" />
+                android:text="@string/chronic_alcoholism" />
 
             <CheckBox
                 android:id="@+id/checkBox7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pregnancy" />
+                android:text="@string/pregnancy" />
 
             <CheckBox
                 android:id="@+id/checkBox8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Acute fever" />
+                android:text="@string/acute_fever" />
 
             <CheckBox
                 android:id="@+id/checkBox9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ear or body piercing and tattooing" />
+                android:text="@string/ear_or_body_piercing_and_tattooing" />
 
             <Button
 
@@ -283,7 +299,7 @@
                 android:layout_margin="50dp"
                 android:layout_marginTop="60dp"
                 android:background="@drawable/style_button"
-                android:text=" Sign Up "
+                android:text="@string/sign_up"
                 android:textColor="@color/white"
                 app:backgroundTint='#B31217' />
 

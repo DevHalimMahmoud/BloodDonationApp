@@ -175,7 +175,7 @@ public class DonateFragment extends Fragment {
             needed_types = itemView.findViewById(R.id.aval_types);
             org_num = itemView.findViewById(R.id.org_num);
             types_text = itemView.findViewById(R.id.types_text);
-            types_text.setText("Needed Types:");
+            types_text.setText(R.string.nedeed_types_1);
         }
 
         public void setMapLocation(double lat, double lon) {

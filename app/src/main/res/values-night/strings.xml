@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BloodDonationApp</string>
     <string name="title_activity_project" translatable="false">project</string>
@@ -71,5 +72,4 @@
     <string name="new_user">New User</string>
     <string name="nedeed_types_1">Needed Types:</string>
     <string name="login">Login</string>
-
 </resources>

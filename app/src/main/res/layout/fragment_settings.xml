@@ -36,7 +36,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:shadowColor="@color/purple_200"
-                android:text="Account Information"
+                android:text="@string/account_information"
                 android:textAlignment="center"
                 android:textColor="#B31217"
                 android:textSize="20sp"
@@ -53,7 +53,7 @@
 
                 android:background="@drawable/style"
                 android:ems="10"
-                android:hint="  E-mail"
+                android:hint="@string/e_mail"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:shadowColor="@color/purple_200"
-                android:text="Change Email"
+                android:text="@string/change_email"
                 android:textAlignment="center"
                 android:textColor="#B31217"
                 android:textSize="13sp"
@@ -92,7 +92,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:shadowColor="@color/purple_200"
-                android:text="Send Password Reset"
+                android:text="@string/send_password_reset"
                 android:textAlignment="center"
                 android:textColor="#B31217"
                 android:textSize="20sp"
@@ -109,7 +109,7 @@
 
                 android:background="@drawable/style"
                 android:ems="10"
-                android:hint="  Name"
+                android:hint="@string/name"
                 android:inputType="text"
 
                 android:textColor="@color/black"
@@ -130,7 +130,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:shadowColor="@color/purple_200"
-                android:text="Change Name"
+                android:text="@string/change_name"
                 android:textAlignment="center"
                 android:textColor="#B31217"
                 android:textSize="13sp"
@@ -156,7 +156,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:shadowColor="@color/purple_200"
-                android:text="Personal Information"
+                android:text="@string/personal_information"
                 android:textAlignment="center"
                 android:textColor="#B31217"
                 android:textSize="20sp"
@@ -174,7 +174,7 @@
 
                 android:background="@drawable/style"
                 android:ems="10"
-                android:hint="  Age"
+                android:hint="@string/age"
                 android:inputType="number"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -192,7 +192,7 @@
                 android:background="@drawable/style"
 
                 android:ems="10"
-                android:hint="National ID Number"
+                android:hint="@string/national_id_number"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
@@ -211,7 +211,7 @@
                 android:background="@drawable/style"
 
                 android:ems="10"
-                android:hint="Address"
+                android:hint="@string/address"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
@@ -233,7 +233,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="10dp"
-                    android:text="Blood type" />
+                    android:text="@string/blood_type" />
 
                 <Spinner
                     android:id="@+id/BloodType1"
@@ -273,13 +273,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gender " />
+                        android:text="@string/gender" />
 
                     <RadioButton
                         android:id="@+id/radioButton"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
-                        android:text="Male"
+                        android:text="@string/male"
 
                         />
 
@@ -288,7 +288,7 @@
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:checked="false"
-                        android:text="Female" />
+                        android:text="@string/female" />
 
                 </RadioGroup>
             </LinearLayout>
@@ -297,7 +297,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="Do  you have any of the following conditions  ?"
+                android:text="@string/do_you_have_any_of_the_following_conditions"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -305,61 +305,61 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Cancer" />
+                android:text="@string/cancer" />
 
             <CheckBox
                 android:id="@+id/checkBox2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cardiac disease" />
+                android:text="@string/cardiac_disease" />
 
             <CheckBox
                 android:id="@+id/checkBox3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lung disease" />
+                android:text="@string/lung_disease" />
 
             <CheckBox
                 android:id="@+id/checkBox4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="hepatitis B and C" />
+                android:text="@string/hepatitis_b_and_c" />
 
             <CheckBox
                 android:id="@+id/checkBox10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HIV infaction " />
+                android:text="@string/hiv_infection" />
 
             <CheckBox
                 android:id="@+id/checkBox5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="AIDS or Sexually Transmitted Diseases (STD)" />
+                android:text="@string/aids_or_sexually_transmitted_diseases_std" />
 
             <CheckBox
                 android:id="@+id/checkBox6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chronic alcoholism" />
+                android:text="@string/chronic_alcoholism" />
 
             <CheckBox
                 android:id="@+id/checkBox7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pregnancy" />
+                android:text="@string/pregnancy" />
 
             <CheckBox
                 android:id="@+id/checkBox8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Acute fever" />
+                android:text="@string/acute_fever" />
 
             <CheckBox
                 android:id="@+id/checkBox9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ear or body piercing and tattooing" />
+                android:text="@string/ear_or_body_piercing_and_tattooing" />
 
             <Button
 
@@ -369,7 +369,7 @@
                 android:layout_margin="50dp"
                 android:layout_marginTop="60dp"
                 android:background="@drawable/style_button"
-                android:text=" Update info "
+                android:text="@string/update_info"
                 android:textColor="@color/white"
                 app:backgroundTint='#B31217' />
 
