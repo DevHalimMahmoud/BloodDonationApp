@@ -108,8 +108,9 @@ public class Login extends AppCompatActivity {
     public void onBackPressed() {
 
         super.onBackPressed();
+        moveTaskToBack(true);
         finish();
-
+        System.runFinalizersOnExit(true);
     }
 
 }

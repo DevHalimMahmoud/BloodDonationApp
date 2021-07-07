@@ -47,6 +47,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BloodDonationApp.NoActionBar" />
         <activity
+            android:noHistory="true"
             android:name=".ui.login.Login"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BloodDonationApp.NoActionBar" />
