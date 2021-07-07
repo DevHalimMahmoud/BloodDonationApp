@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
             mAuth.signOut();
             Intent in = new Intent(getApplicationContext(), Login.class);
             startActivity(in);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

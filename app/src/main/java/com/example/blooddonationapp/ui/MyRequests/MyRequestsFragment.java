@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blooddonationapp.R;
-import com.firebase.ui.database.FirebaseArray;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,8 +24,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SnapshotMetadata;
 
 import java.util.Objects;
 
@@ -62,7 +59,7 @@ public class MyRequestsFragment extends Fragment {
 
     private void getRequestsList(Context root) {
         Query query = db.collection("requests").whereEqualTo("user_id", mAuth.getCurrentUser().getUid().toString());
-        
+
         FirestoreRecyclerOptions<MyRequestItem> response = new FirestoreRecyclerOptions.Builder<MyRequestItem>()
                 .setQuery(query, MyRequestItem.class)
                 .build();
@@ -75,7 +72,7 @@ public class MyRequestsFragment extends Fragment {
                 holder.amount.setText(myrequestitem.getAmount());
                 holder.statues.setText(myrequestitem.getStatus());
                 holder.type.setText(myrequestitem.getType());
-                holder.reason.setText(myrequestitem.getReason());
+                holder.reason.setText(myrequestitem.getMedical_reason());
 
                 DocumentReference orgDocRef = db.collection("users").document(myrequestitem.getOrg_id().toString());
 
@@ -155,8 +152,8 @@ public class MyRequestsFragment extends Fragment {
             center_name = itemView.findViewById(R.id.center_name);
             amount = itemView.findViewById(R.id.amount);
             statues = itemView.findViewById(R.id.statues);
-            type=itemView.findViewById(R.id.type);
-            reason=itemView.findViewById(R.id.reason);
+            type = itemView.findViewById(R.id.type);
+            reason = itemView.findViewById(R.id.reason);
 
         }
 

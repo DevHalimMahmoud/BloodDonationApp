@@ -65,4 +65,21 @@
     <string name="new_user">مستخدم جديد</string>
     <string name="nedeed_types_1">الانواع المتاحة</string>
     <string name="login">تسجيل الدخول</string>
+    <string name="welcome">مرحبا بك</string>
+    <string name="create_account">أنشئ حساب و سجل الدخول لتستخدم مميزات النظام</string>
+    <string name="platform">نحن نتواجد علي اكثر من منصة</string>
+    <string name="available_android_web">خدماتنا متوفرة خلال تطبيق الاندرويد و الموقع الالكتروني</string>
+    <string name="many_org">العديد من المنظمات موجودة</string>
+    <string name="you_can_choose">يمكن ان تختار بين الكثير من مراكز التبرع</string>
+    <string name="trusted_org">منظمات مرخصة</string>
+    <string name="centers_managed">مراز التبرع تحت ادارة منظمات مرخصة و تم اختيارها بواسطة وزارة الصحة المصرية</string>
+    <string name="req_statues">حالة طلباتك</string>
+    <string name="view_requests">يمكن ان تري حالة طلباتك في اى وقت</string>
+    <string name="navigation">االتنقل</string>
+    <string name="can_navigate">يمكن ان تصل لاي مركز تبرع عن طريق الخرائط</string>
+    <string name="you_matters">تبرعك مهم</string>
+    <string name="save_people">تبرع سوف ينقذ حياة الناس ويساعد الاكثر احتياجا</string>
+    <string name="professional">اطباء و ممرضين بارعين</string>
+    <string name="top_doc">مراكز تبرعنا لديها ابرع الاطباء و الممرضات حتي تحصل علي افضل خدمة ممكنة</string>
+    <string name="amount_in_ml_max_470ml">الكمية حد اقصي 470</string>
 </resources>

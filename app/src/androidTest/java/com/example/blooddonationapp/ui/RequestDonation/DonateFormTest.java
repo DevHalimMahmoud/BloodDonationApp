@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.instanceOf;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class RequestFormTest {
+public class DonateFormTest {
     @Rule
     public ActivityScenarioRule<RequestForm> activityRule =
             new ActivityScenarioRule(RequestForm.class);

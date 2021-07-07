@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.RequestDonation;
+package com.example.blooddonationapp.ui.Donate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,21 +23,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
-public class RequestForm extends AppCompatActivity {
+public class DonateForm extends AppCompatActivity {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Intent intent;
     Spinner Spinner_BloodType1, Spinner_BloodType2;
-    EditText reason, amount;
+    EditText  amount;
     Button send;
     CheckBox agree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_form);
+        setContentView(R.layout.activity_donate_form);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String[] arr_BloodType_data1 = {"A", "B", "AB", "O"};
@@ -52,7 +51,7 @@ public class RequestForm extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, arr_BloodType_data2);
         data.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner_BloodType2.setAdapter(data);
-        reason = findViewById(R.id.reason);
+
         amount = findViewById(R.id.amount);
         send = findViewById(R.id.button);
         agree = findViewById(R.id.checkBox);
@@ -61,12 +60,12 @@ public class RequestForm extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (agree.isChecked() && !amount.getText().toString().isEmpty() && !reason.getText().toString().isEmpty()) {
+                if (agree.isChecked() && !amount.getText().toString().isEmpty()) {
                     String type = Spinner_BloodType1.getSelectedItem().toString() + Spinner_BloodType2.getSelectedItem().toString();
                     Map<String, Object> data = new HashMap<>();
                     data.put("amount", amount.getText().toString());
-                    data.put("medical_reason", reason.getText().toString());
-                    data.put("reason", "request");
+                    data.put("medical_reason", "This user is donating");
+                    data.put("reason", "donate");
                     data.put("status", "pending");
                     data.put("user_id", mAuth.getCurrentUser().getUid().toString());
                     data.put("org_id", intent.getStringExtra("org_id"));
@@ -78,7 +77,7 @@ public class RequestForm extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(RequestForm.this, "Request Sent", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(DonateForm.this, "Request Sent", Toast.LENGTH_LONG).show();
                                     clear();
                                     finish();
                                 }
@@ -86,14 +85,14 @@ public class RequestForm extends AppCompatActivity {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(RequestForm.this, "ERROR TRY AGAIN", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(DonateForm.this, "ERROR TRY AGAIN", Toast.LENGTH_SHORT).show();
                                     clear();
 
                                 }
                             });
                 } else {
 
-                    Toast.makeText(RequestForm.this, "Please Complete the form", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DonateForm.this, "Please Complete the form", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -112,7 +111,7 @@ public class RequestForm extends AppCompatActivity {
     }
 
     public void clear() {
-        reason.setText("");
+        
         amount.setText("");
 
     }

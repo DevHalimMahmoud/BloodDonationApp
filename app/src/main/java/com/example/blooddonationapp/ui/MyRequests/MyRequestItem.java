@@ -2,13 +2,13 @@ package com.example.blooddonationapp.ui.MyRequests;
 
 public class MyRequestItem {
 
-    private String amount, hotspot_id, org_id, reason, status, type, user_id;
+    private String amount, hotspot_id, org_id, medical_reason, status, type, user_id;
 
-    public MyRequestItem(String amount, String hotspot_id, String org_id, String reason, String status, String type, String user_id) {
+    public MyRequestItem(String amount, String hotspot_id, String org_id, String medical_reason, String status, String type, String user_id) {
         this.amount = amount;
         this.hotspot_id = hotspot_id;
         this.org_id = org_id;
-        this.reason = reason;
+        this.medical_reason = medical_reason;
         this.status = status;
         this.type = type;
         this.user_id = user_id;
@@ -43,12 +43,12 @@ public class MyRequestItem {
         this.org_id = org_id;
     }
 
-    public String getReason() {
-        return reason;
+    public String getMedical_reason() {
+        return medical_reason;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
+    public void setMedical_reason(String medical_reason) {
+        this.medical_reason = medical_reason;
     }
 
     public String getStatus() {

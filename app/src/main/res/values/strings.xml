@@ -71,5 +71,22 @@
     <string name="new_user">New User</string>
     <string name="nedeed_types_1">Needed Types:</string>
     <string name="login">Login</string>
+    <string name="welcome">Welcome!</string>
+    <string name="create_account">Create Account And Login To Access The Application Features</string>
+    <string name="platform">Multi Platform Service</string>
+    <string name="available_android_web">Our Service is Available Via Our Android And Website</string>
+    <string name="many_org">Many Organizations Available</string>
+    <string name="you_can_choose">\"You Can Choose Between Many Different Donation Centers \"</string>
+    <string name="trusted_org">Trusted Organizations</string>
+    <string name="centers_managed">Donation Centers is Managed by Licenced Organizations That is Chosen by The Egyptian Ministry of Health</string>
+    <string name="req_statues">Requests Statues</string>
+    <string name="view_requests">You Can View Your Requests Statues Any Time</string>
+    <string name="navigation">Navigation</string>
+    <string name="can_navigate">You Can Navigate To Any Donation Center by Maps</string>
+    <string name="you_matters">Your Donation Matters</string>
+    <string name="save_people">Your Donations Will Save People Lives and Help The Most Needed</string>
+    <string name="professional">Professional Doctors and Nurses</string>
+    <string name="top_doc">Our Donation Centers Have The Top Doctors And Nurses To Provide You With The Best Experience</string>
+    <string name="amount_in_ml_max_470ml">Amount in ml Max 470ml</string>
 
 </resources>

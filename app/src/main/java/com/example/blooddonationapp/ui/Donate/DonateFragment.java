@@ -1,8 +1,6 @@
 package com.example.blooddonationapp.ui.Donate;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blooddonationapp.R;
+import com.example.blooddonationapp.ui.RequestDonation.RequestForm;
 import com.example.blooddonationapp.ui.RequestDonation.RequestItem;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -113,18 +111,26 @@ public class DonateFragment extends Fragment {
 
                 holder.itemView.setOnClickListener(v -> {
 
+                    DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAbsoluteAdapterPosition());
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                    builder.setMessage("You Donate Directly To Donation Centers")
-                            .setCancelable(false)
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //do things
-                                    Toast.makeText(root.getApplicationContext(), "Thanks for Making The Wold a Better Place! ", Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
+                    Intent intent = new Intent(getContext(), DonateForm.class);
+                    intent.putExtra("hotspot_id", snapshot.getId().toString());
+                    intent.putExtra("org_id", requestItem.getOrg_id().toString());
+
+                    startActivity(intent);
+
+
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+//                    builder.setMessage("You Donate Directly To Donation Centers")
+//                            .setCancelable(false)
+//                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//                                    //do things
+//                                    Toast.makeText(root.getApplicationContext(), "Thanks for Making The Wold a Better Place! ", Toast.LENGTH_LONG).show();
+//                                }
+//                            });
+//                    AlertDialog alert = builder.create();
+//                    alert.show();
 
                 });
 
