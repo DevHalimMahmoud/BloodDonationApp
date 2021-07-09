@@ -66,6 +66,7 @@ public class Login extends AppCompatActivity {
 
                                                             Intent in = new Intent(Login.this, MainActivity.class);
                                                             startActivity(in);
+                                                            finish();
 
                                                         } else {
                                                             Toast.makeText(getApplicationContext(), "User type not supported", Toast.LENGTH_SHORT).show();

@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         View view = navigationView.getHeaderView(0);
 
@@ -136,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
 
             super.onBackPressed();
         Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_home);
+//        moveTaskToBack(true);
+//        finish();
+//        System.runFinalizersOnExit(true);
 
     }
 
