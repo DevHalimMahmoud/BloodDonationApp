@@ -78,6 +78,7 @@ public class SignUp extends AppCompatActivity {
                                                                 });
                                                         Intent in = new Intent(SignUp.this, Login.class);
                                                         startActivity(in);
+                                                        finish();
                                                     }
                                                 })
                                                 .addOnFailureListener(new OnFailureListener() {
