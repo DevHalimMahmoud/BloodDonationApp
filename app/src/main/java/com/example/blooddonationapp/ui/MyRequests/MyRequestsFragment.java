@@ -92,7 +92,7 @@ public class MyRequestsFragment extends Fragment {
                         }
                     }
                 });
-                DocumentReference centerDocRef = db.collection("donation_hotspots").document(myrequestitem.getHotspot_id().toString());
+                DocumentReference centerDocRef = db.collection("donation_hotspot").document(myrequestitem.getHotspot_id().toString());
                 centerDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
