@@ -9,7 +9,7 @@ class AuthInstanceSingleton(firebaseApp: FirebaseApp) : FirebaseAuth(firebaseApp
         var instance: FirebaseAuth? = null
             get() {
                 if (field == null) {
-                    synchronized(AuthInstanceSingleton::class.java) {
+                    synchronized(AuthInstanceSingleton::class) {
                         if (field == null) {
                             field = getInstance()
                         }

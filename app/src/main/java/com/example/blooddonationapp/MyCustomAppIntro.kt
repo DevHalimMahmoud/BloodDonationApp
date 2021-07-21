@@ -8,6 +8,7 @@ import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.request_item.*
 
 class MyCustomAppIntro : AppIntro2() {
     private val mAuth = FirebaseAuth.getInstance()
