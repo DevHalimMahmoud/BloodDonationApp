@@ -14,8 +14,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SplashScreen extends AppCompatActivity {
     ProgressBar progressBar;
-    private final FirebaseAuth mAuth= FirebaseAuth.getInstance();
-    private final FirebaseUser currentUser = mAuth.getCurrentUser();
+    private final FirebaseAuthSingleton mAuth= FirebaseAuthSingleton.INSTANCE;
+    private final FirebaseUser currentUser = mAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

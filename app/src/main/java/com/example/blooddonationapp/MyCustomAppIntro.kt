@@ -10,8 +10,8 @@ import com.github.appintro.AppIntroPageTransformerType
 import com.google.firebase.auth.FirebaseAuth
 
 class MyCustomAppIntro : AppIntro2() {
-    private val mAuth = FirebaseAuth.getInstance()
-    private val currentUser = mAuth.currentUser
+
+    private val currentUser = FirebaseAuthSingleton.instance!!.currentUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

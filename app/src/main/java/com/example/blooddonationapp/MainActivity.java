@@ -31,7 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private final FirebaseAuthSingleton mAuth = FirebaseAuthSingleton.INSTANCE;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private AppBarConfiguration mAppBarConfiguration;
     TextView name, email;
@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
 
         name = view.findViewById(R.id.header_name);
         email = view.findViewById(R.id.header_email);
-        String email_t = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail().toString();
+        String email_t = Objects.requireNonNull(mAuth.getInstance().getCurrentUser()).getEmail().toString();
         email.setText(email_t);
 
 
-        DocumentReference docRef = db.collection("users").document(Objects.requireNonNull(mAuth.getUid()));
+        DocumentReference docRef = db.collection("users").document(Objects.requireNonNull(mAuth.getInstance().getUid()));
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
 
                 intent.setData(Uri.parse("mailto:abdomahmoud20060@gmail.com")); // only email apps should handle this
-                intent.putExtra(Intent.EXTRA_SUBJECT, mAuth.getCurrentUser().getUid().toString());
+                intent.putExtra(Intent.EXTRA_SUBJECT, mAuth.getInstance().getCurrentUser().getUid().toString());
                 intent.putExtra(Intent.EXTRA_TEXT, "Write The Problem Here");
 
                 startActivity(intent);
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         if (item.getItemId() == R.id.action_settings) {
-            mAuth.signOut();
+            mAuth.getInstance().signOut();
             Intent in = new Intent(getApplicationContext(), Login.class);
             startActivity(in);
             finish();

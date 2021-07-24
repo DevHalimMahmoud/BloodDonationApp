@@ -12,13 +12,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.blooddonationapp.FirebaseAuthSingleton;
 import com.example.blooddonationapp.MainActivity;
 import com.example.blooddonationapp.R;
 import com.example.blooddonationapp.ui.SignUp.SignUp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,13 +29,12 @@ public class Login extends AppCompatActivity {
     Button Done_login;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     EditText email, password;
-    private FirebaseAuth mAuth;
+    private  FirebaseAuthSingleton mAuth = FirebaseAuthSingleton.INSTANCE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mAuth = FirebaseAuth.getInstance();
         Add_new_user = findViewById(R.id.Add_new_user);
         Done_login = findViewById(R.id.Done_login);
         email = findViewById(R.id.TextEmail);
@@ -48,13 +47,13 @@ public class Login extends AppCompatActivity {
 
 
                 } else {
-                    mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                    mAuth.getInstance().signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                             .addOnCompleteListener((Activity) v.getContext(), new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
-                                        DocumentReference docRef = db.collection("users").document(mAuth.getUid().toString());
+                                        DocumentReference docRef = db.collection("users").document(mAuth.getInstance().getUid().toString());
                                         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                             @Override
                                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -62,7 +61,7 @@ public class Login extends AppCompatActivity {
                                                     DocumentSnapshot document = task.getResult();
                                                     if (document.exists()) {
                                                         if (document.get("user_type").toString().equals("user")) {
-                                                            FirebaseUser user = mAuth.getCurrentUser();
+                                                            FirebaseUser user = mAuth.getInstance().getCurrentUser();
 
                                                             Intent in = new Intent(Login.this, MainActivity.class);
                                                             startActivity(in);
@@ -70,11 +69,11 @@ public class Login extends AppCompatActivity {
 
                                                         } else {
                                                             Toast.makeText(getApplicationContext(), "User type not supported", Toast.LENGTH_SHORT).show();
-                                                            mAuth.signOut();
+                                                            mAuth.getInstance().signOut();
                                                         }
                                                     } else {
                                                         Toast.makeText(getApplicationContext(), "User type not supported", Toast.LENGTH_SHORT).show();
-                                                        mAuth.signOut();
+                                                        mAuth.getInstance().signOut();
                                                     }
                                                 } else {
                                                     Toast.makeText(getApplicationContext(), "Please try Again" + task.getException(), Toast.LENGTH_SHORT).show();
@@ -86,7 +85,7 @@ public class Login extends AppCompatActivity {
                                         // If sign in fails, display a message to the user.
 
 
-                                        Toast.makeText((Activity) v.getContext(), "Authentication failed." + task.getException().toString(),
+                                        Toast.makeText(v.getContext(), "Authentication failed." + task.getException().toString(),
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }
