@@ -25,19 +25,20 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity {
-    TextView Add_new_user;
+    TextView new_user;
     Button Done_login;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     EditText email, password;
-    private  FirebaseAuthSingleton mAuth = FirebaseAuthSingleton.INSTANCE;
+    private final FirebaseAuthSingleton mAuth = FirebaseAuthSingleton.INSTANCE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Add_new_user = findViewById(R.id.Add_new_user);
+        new_user = findViewById(R.id.new_user);
         Done_login = findViewById(R.id.Done_login);
         email = findViewById(R.id.TextEmail);
+
         password = findViewById(R.id.set_password);
         Done_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,59 +48,74 @@ public class Login extends AppCompatActivity {
 
 
                 } else {
-                    mAuth.getInstance().signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                            .addOnCompleteListener((Activity) v.getContext(), new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        DocumentReference docRef = db.collection("users").document(mAuth.getInstance().getUid().toString());
-                                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                if (task.isSuccessful()) {
-                                                    DocumentSnapshot document = task.getResult();
-                                                    if (document.exists()) {
-                                                        if (document.get("user_type").toString().equals("user")) {
-                                                            FirebaseUser user = mAuth.getInstance().getCurrentUser();
 
-                                                            Intent in = new Intent(Login.this, MainActivity.class);
-                                                            startActivity(in);
-                                                            finish();
+                    tryLogin(v);
 
-                                                        } else {
-                                                            Toast.makeText(getApplicationContext(), "User type not supported", Toast.LENGTH_SHORT).show();
-                                                            mAuth.getInstance().signOut();
-                                                        }
-                                                    } else {
-                                                        Toast.makeText(getApplicationContext(), "User type not supported", Toast.LENGTH_SHORT).show();
-                                                        mAuth.getInstance().signOut();
-                                                    }
-                                                } else {
-                                                    Toast.makeText(getApplicationContext(), "Please try Again" + task.getException(), Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-                                        });
-
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-
-
-                                        Toast.makeText(v.getContext(), "Authentication failed." + task.getException().toString(),
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
                 }
             }
         });
-        Add_new_user.setOnClickListener(new View.OnClickListener() {
+
+        new_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent in = new Intent(Login.this, SignUp.class);
                 startActivity(in);
 
+            }
+        });
+    }
+
+    private void tryLogin(View v) {
+
+        mAuth.getInstance().signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                .addOnCompleteListener((Activity) v.getContext(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+
+                            checkUserType();
+
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+
+
+                            Toast.makeText(v.getContext(), "Authentication failed." + task.getException().toString(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void checkUserType() {
+
+        DocumentReference docRef = db.collection("users").document(mAuth.getInstance().getUid().toString());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        if (document.get("user_type").toString().equals("user")) {
+
+
+                            Intent in = new Intent(Login.this, MainActivity.class);
+                            startActivity(in);
+                            finish();
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "User type not supported", Toast.LENGTH_SHORT).show();
+                            mAuth.getInstance().signOut();
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "User type not supported", Toast.LENGTH_SHORT).show();
+                        mAuth.getInstance().signOut();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please try Again" + task.getException(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

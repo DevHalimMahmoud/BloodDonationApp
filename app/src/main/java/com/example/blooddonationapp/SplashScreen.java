@@ -9,12 +9,11 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.blooddonationapp.ui.login.Login;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SplashScreen extends AppCompatActivity {
     ProgressBar progressBar;
-    private final FirebaseAuthSingleton mAuth= FirebaseAuthSingleton.INSTANCE;
+    private final FirebaseAuthSingleton mAuth = FirebaseAuthSingleton.INSTANCE;
     private final FirebaseUser currentUser = mAuth.getInstance().getCurrentUser();
 
     @Override
@@ -33,13 +32,13 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over\
 
-               if (isFirstTime()) {
+                if (isFirstTime()) {
                     // What you do when the Application is Opened First time Goes here
                     Intent s = new Intent(getApplicationContext(), MyCustomAppIntro.class);
                     startActivity(s);
                     finish();
                 } else if (currentUser == null) {
-
+                    //check if no user is logged in
                     Intent i = new Intent(getApplicationContext(), Login.class);
                     startActivity(i);
                     finish();

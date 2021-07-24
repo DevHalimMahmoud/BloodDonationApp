@@ -7,7 +7,6 @@ import com.example.blooddonationapp.ui.login.Login
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
-import com.google.firebase.auth.FirebaseAuth
 
 class MyCustomAppIntro : AppIntro2() {
 
@@ -16,7 +15,6 @@ class MyCustomAppIntro : AppIntro2() {
         super.onCreate(savedInstanceState)
 
         // Make sure you don't call setContentView!
-
         // Call addSlide passing your Fragments.
         // You can use AppIntroFragment to use a pre-built fragment
 
@@ -109,33 +107,31 @@ class MyCustomAppIntro : AppIntro2() {
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
         // Decide what to do when the user clicks on "Skip"
+        checkUserStatues();
 
+
+        finish()
+    }
+
+    private fun checkUserStatues() {
+        //no user logged in
         if (currentUser == null) {
             val i = Intent(applicationContext, Login::class.java)
             startActivity(i)
             finish()
         } else {
+            //user exists
             val i = Intent(applicationContext, MainActivity::class.java)
             startActivity(i)
             finish()
         }
-
-        finish()
     }
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
         // Decide what to do when the user clicks on "Done"
 
-        if (currentUser == null) {
-            val i = Intent(applicationContext, Login::class.java)
-            startActivity(i)
-            finish()
-        } else {
-            val i = Intent(applicationContext, MainActivity::class.java)
-            startActivity(i)
-            finish()
-        }
+        checkUserStatues()
 
         finish()
     }
