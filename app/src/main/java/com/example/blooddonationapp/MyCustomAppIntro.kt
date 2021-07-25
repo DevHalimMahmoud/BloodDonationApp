@@ -113,6 +113,15 @@ class MyCustomAppIntro : AppIntro2() {
         finish()
     }
 
+    override fun onDonePressed(currentFragment: Fragment?) {
+        super.onDonePressed(currentFragment)
+        // Decide what to do when the user clicks on "Done"
+
+        checkUserStatues()
+
+        finish()
+    }
+
     private fun checkUserStatues() {
         //no user logged in
         if (currentUser == null) {
@@ -127,12 +136,5 @@ class MyCustomAppIntro : AppIntro2() {
         }
     }
 
-    override fun onDonePressed(currentFragment: Fragment?) {
-        super.onDonePressed(currentFragment)
-        // Decide what to do when the user clicks on "Done"
 
-        checkUserStatues()
-
-        finish()
-    }
 }
