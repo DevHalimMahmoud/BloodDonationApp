@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.blooddonationapp.FirebaseAuthSingleton;
 import com.example.blooddonationapp.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -28,7 +29,7 @@ import com.google.firebase.firestore.Query;
 import java.util.Objects;
 
 public class MyRequestsFragment extends Fragment {
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseAuthSingleton mAuth = FirebaseAuthSingleton.INSTANCE;
     private FirebaseFirestore db;
     RecyclerView request_item;
     private FirestoreRecyclerAdapter request_adapter;
@@ -58,7 +59,7 @@ public class MyRequestsFragment extends Fragment {
     }
 
     private void getRequestsList(Context root) {
-        Query query = db.collection("requests").whereEqualTo("user_id", mAuth.getCurrentUser().getUid().toString());
+        Query query = db.collection("requests").whereEqualTo("user_id", mAuth.getInstance().getCurrentUser().getUid().toString());
 
         FirestoreRecyclerOptions<MyRequestItem> response = new FirestoreRecyclerOptions.Builder<MyRequestItem>()
                 .setQuery(query, MyRequestItem.class)

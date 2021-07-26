@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -94,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_Donate, R.id.nav_Request_Donation,R.id.nav_my_requests, R.id.nav_Settings, R.id.nav_About)
+                R.id.nav_home, R.id.nav_Donate, R.id.nav_Request_Donation, R.id.nav_my_requests, R.id.nav_Settings, R.id.nav_About)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -133,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-            super.onBackPressed();
+        super.onBackPressed();
         Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_home);
 //        moveTaskToBack(true);
 //        finish();

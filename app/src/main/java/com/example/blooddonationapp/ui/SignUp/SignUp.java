@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.blooddonationapp.FirebaseAuthSingleton;
 import com.example.blooddonationapp.R;
 import com.example.blooddonationapp.ui.login.Login;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,7 +26,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -34,7 +34,7 @@ import java.util.Map;
 import static android.content.ContentValues.TAG;
 
 public class SignUp extends AppCompatActivity {
-    private FirebaseAuth mAuth;
+    private FirebaseAuthSingleton mAuth = FirebaseAuthSingleton.INSTANCE;
     CheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7, checkBox8, checkBox9, checkBox10;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     EditText textbox_Email, textbox_Password, textbox_Name, textbox_Age, textbox_National, textbox_Address;
@@ -49,48 +49,24 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         dataBinding();
+        signUp();
+
+
+    }
+
+    private void signUp() {
+
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (NotEmpty()) {
-                    mAuth.createUserWithEmailAndPassword(textbox_Email.getText().toString(), textbox_Password.getText().toString())
+                    mAuth.getInstance().createUserWithEmailAndPassword(textbox_Email.getText().toString(), textbox_Password.getText().toString())
                             .addOnCompleteListener((Activity) v.getContext(), new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
 
-                                        String id = mAuth.getCurrentUser().getUid();
-
-                                        db.collection("users").document(id)
-                                                .set(data_map())
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        Toast.makeText(getApplicationContext(), "User Created Successfully Pleas Verify your E-mail", Toast.LENGTH_LONG).show();
-                                                        mAuth.getCurrentUser().sendEmailVerification()
-                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                    @Override
-                                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                                        if (task.isSuccessful()) {
-                                                                            Log.d(TAG, "Email sent.");
-                                                                        }
-                                                                    }
-                                                                });
-                                                        Intent in = new Intent(SignUp.this, Login.class);
-                                                        startActivity(in);
-                                                        finish();
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getApplicationContext(), "Please try Again", Toast.LENGTH_SHORT).show();
-
-
-                                                        mAuth.getCurrentUser().delete();
-
-                                                    }
-                                                });
+                                        addUserDataToFirestore();
 
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Please try Again", Toast.LENGTH_SHORT).show();
@@ -102,6 +78,56 @@ public class SignUp extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void addUserDataToFirestore() {
+
+        String id = mAuth.getInstance().getCurrentUser().getUid();
+
+        db.collection("users").document(id)
+                .set(data_map())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        verifyEmail();
+                        startActivity();
+
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Please try Again", Toast.LENGTH_SHORT).show();
+
+
+                        mAuth.getInstance().getCurrentUser().delete();
+
+                    }
+                });
+
+    }
+
+    private void startActivity() {
+
+        Intent in = new Intent(SignUp.this, Login.class);
+        startActivity(in);
+        finish();
+    }
+
+    private void verifyEmail() {
+
+        Toast.makeText(getApplicationContext(), "User Created Successfully Pleas Verify your E-mail", Toast.LENGTH_LONG).show();
+        mAuth.getInstance().getCurrentUser().sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Email sent.");
+                        }
+                    }
+                });
 
     }
 
@@ -151,7 +177,6 @@ public class SignUp extends AppCompatActivity {
         checkBox8 = findViewById(R.id.checkBox8);
         checkBox9 = findViewById(R.id.checkBox9);
         checkBox10 = findViewById(R.id.checkBox10);
-        mAuth = FirebaseAuth.getInstance();
         sign_up = findViewById(R.id.sign_up);
         textbox_Email = (EditText) findViewById(R.id.TextEmail);
         textbox_Password = (EditText) findViewById(R.id.set_password);
