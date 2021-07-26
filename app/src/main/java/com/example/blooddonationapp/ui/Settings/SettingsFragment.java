@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.blooddonationapp.FirebaseAuthSingleton;
 import com.example.blooddonationapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,7 +29,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
@@ -40,7 +40,7 @@ import static android.content.ContentValues.TAG;
 
 public class SettingsFragment extends Fragment {
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuthSingleton mAuth = FirebaseAuthSingleton.INSTANCE;
     CheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7, checkBox8, checkBox9, checkBox10;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     EditText textbox_Email, textbox_Name, textbox_Age, textbox_National, textbox_Address;
@@ -49,7 +49,6 @@ public class SettingsFragment extends Fragment {
     RadioButton male, female;
     Button update;
     TextView password, email, setname;
-    private String m_Text = "";
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -88,9 +87,9 @@ public class SettingsFragment extends Fragment {
                         if (!input.getText().toString().isEmpty()) {
 
                             AuthCredential credential = EmailAuthProvider
-                                    .getCredential(mAuth.getCurrentUser().getEmail().toString(), input.getText().toString());
+                                    .getCredential(mAuth.getInstance().getCurrentUser().getEmail().toString(), input.getText().toString());
 
-                            mAuth.getCurrentUser().reauthenticate(credential)
+                            mAuth.getInstance().getCurrentUser().reauthenticate(credential)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -99,7 +98,7 @@ public class SettingsFragment extends Fragment {
                                         }
                                     });
 
-                            m_Text = input.getText().toString();
+
                         } else {
 
                             Toast.makeText(root.getContext(), "Please Enter Your Password", Toast.LENGTH_SHORT).show();
@@ -125,10 +124,10 @@ public class SettingsFragment extends Fragment {
 
         if (!textbox_Email.getText().toString().isEmpty()) {
 
-            mAuth.getCurrentUser().updateEmail(textbox_Email.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            mAuth.getInstance().getCurrentUser().updateEmail(textbox_Email.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
-                    mAuth.getCurrentUser().sendEmailVerification()
+                    mAuth.getInstance().getCurrentUser().sendEmailVerification()
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -163,7 +162,7 @@ public class SettingsFragment extends Fragment {
         password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAuth.getCurrentUser().isEmailVerified()) {
+                if (mAuth.getInstance().getCurrentUser().isEmailVerified()) {
 
 
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -174,7 +173,7 @@ public class SettingsFragment extends Fragment {
                                     //Yes button clicked
 
 
-                                    mAuth.sendPasswordResetEmail(mAuth.getCurrentUser().getEmail().toString())
+                                    mAuth.getInstance().sendPasswordResetEmail(mAuth.getInstance().getCurrentUser().getEmail().toString())
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
@@ -220,7 +219,7 @@ public class SettingsFragment extends Fragment {
                     Map<String, Object> Name = new HashMap<>();
                     Name.put("name", textbox_Name.getText().toString());
 
-                    db.collection("users").document(mAuth.getCurrentUser().getUid().toString()).update(Name)
+                    db.collection("users").document(mAuth.getInstance().getCurrentUser().getUid().toString()).update(Name)
 
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -266,7 +265,7 @@ public class SettingsFragment extends Fragment {
 
                     ;
 
-                    db.collection("users").document(mAuth.getCurrentUser().getUid().toString()).update(data_map())
+                    db.collection("users").document(mAuth.getInstance().getCurrentUser().getUid().toString()).update(data_map())
 
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -327,7 +326,7 @@ public class SettingsFragment extends Fragment {
         checkBox8 = root.findViewById(R.id.checkBox8);
         checkBox9 = root.findViewById(R.id.checkBox9);
         checkBox10 = root.findViewById(R.id.checkBox10);
-        mAuth = FirebaseAuth.getInstance();
+
         update = root.findViewById(R.id.update);
         textbox_Email = root.findViewById(R.id.TextEmail);
         password = root.findViewById(R.id.set_password);
