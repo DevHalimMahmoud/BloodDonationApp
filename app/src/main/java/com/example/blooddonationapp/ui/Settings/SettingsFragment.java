@@ -73,13 +73,13 @@ public class SettingsFragment extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
                 builder.setTitle("Write Your Password To Change Email");
 
-// Set up the input
+                // Set up the input
                 final EditText input = new EditText(root.getContext());
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
                 input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 builder.setView(input);
 
-// Set up the buttons
+                // Set up the buttons
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
