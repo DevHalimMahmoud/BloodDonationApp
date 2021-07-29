@@ -24,7 +24,7 @@ public class Recyclerview extends RecyclerView.Adapter<Recyclerview.ViewHolder> 
         TextView t1, t2;
         ImageView img;
         FloatingActionButton face;
-        String LinkFace[] =
+        String[] LinkFace =
                 {///link Email facebook
                         "https://www.linkedin.com/in/abdelhalim-mahmoud", // abdelhalim mahmoud
                         "https://web.facebook.com/profile.php?id=100011320336271", //mahmoud
@@ -50,9 +50,9 @@ public class Recyclerview extends RecyclerView.Adapter<Recyclerview.ViewHolder> 
             face.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int postion = getAdapterPosition();
+                    int position = getAdapterPosition();
                     Intent w = new Intent(Intent.ACTION_VIEW);
-                    w.setData(Uri.parse(LinkFace[postion]));
+                    w.setData(Uri.parse(LinkFace[position]));
                     Context.startActivity(w);
                 }
             });
@@ -82,7 +82,6 @@ public class Recyclerview extends RecyclerView.Adapter<Recyclerview.ViewHolder> 
         holder.t1.setText(p.getName());
         holder.t2.setText(p.getId());
         holder.img.setImageResource(p.getImg());
-        //imageView3
     }
 
     @Override

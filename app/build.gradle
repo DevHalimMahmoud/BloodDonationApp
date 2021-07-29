@@ -4,6 +4,7 @@ plugins {
     id 'com.google.android.secrets-gradle-plugin' version '1.1.0'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+
 }
 
 android {
@@ -68,7 +69,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
 
-
     // Core library
     androidTestImplementation 'androidx.test:core:1.4.0'
 
@@ -94,7 +94,6 @@ dependencies {
     // dependency to appear on your APK's compile classpath or the test APK
     // classpath.
     androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'
-
 
 
     androidTestImplementation 'androidx.fragment:fragment-testing:1.4.0-alpha04'
