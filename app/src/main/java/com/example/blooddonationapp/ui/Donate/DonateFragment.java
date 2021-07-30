@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blooddonationapp.R;
-import com.example.blooddonationapp.ui.RequestDonation.RequestForm;
 import com.example.blooddonationapp.ui.RequestDonation.RequestItem;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -50,6 +49,7 @@ public class DonateFragment extends Fragment {
     protected GoogleMap mGoogleMap;
     public MapView mapView;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -80,6 +80,8 @@ public class DonateFragment extends Fragment {
                 .build();
 
         request_adapter = new FirestoreRecyclerAdapter<RequestItem, DonateFragment.RequestHolder>(response) {
+
+
             @Override
             public void onBindViewHolder(DonateFragment.RequestHolder holder, int position, RequestItem requestItem) {
 
@@ -108,7 +110,6 @@ public class DonateFragment extends Fragment {
                     }
                 });
 
-
                 holder.itemView.setOnClickListener(v -> {
 
                     DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAbsoluteAdapterPosition());
@@ -119,18 +120,6 @@ public class DonateFragment extends Fragment {
 
                     startActivity(intent);
 
-
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-//                    builder.setMessage("You Donate Directly To Donation Centers")
-//                            .setCancelable(false)
-//                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    //do things
-//                                    Toast.makeText(root.getApplicationContext(), "Thanks for Making The Wold a Better Place! ", Toast.LENGTH_LONG).show();
-//                                }
-//                            });
-//                    AlertDialog alert = builder.create();
-//                    alert.show();
 
                 });
 
@@ -171,10 +160,12 @@ public class DonateFragment extends Fragment {
         public RequestHolder(View itemView) {
             super(itemView);
             mapView = (MapView) itemView.findViewById(R.id.map);
-
+            mapView.willNotCacheDrawing();
             mapView.onCreate(null);
+            mapView.onStart();
             mapView.getMapAsync(this);
             mapView.onResume();
+//         Calling mapView.onDestroy(); stops the memory leak but the map wont load
 
             textName = itemView.findViewById(R.id.name);
             org_name = itemView.findViewById(R.id.org_name);
@@ -190,8 +181,8 @@ public class DonateFragment extends Fragment {
 
             if (mGoogleMap != null) {
                 updateMapContents();
-            }
 
+            }
 
         }
 
@@ -242,5 +233,8 @@ public class DonateFragment extends Fragment {
         super.onStart();
         request_adapter.startListening();
 
+
     }
+
+
 }

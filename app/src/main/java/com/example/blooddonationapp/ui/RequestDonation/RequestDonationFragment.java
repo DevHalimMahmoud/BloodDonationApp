@@ -26,6 +26,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.zza;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -60,7 +61,6 @@ public class RequestDonationFragment extends Fragment {
 
 
         getRequestsList(root.getContext());
-
 
         return root;
     }
@@ -150,22 +150,26 @@ public class RequestDonationFragment extends Fragment {
         TextView org_name;
         TextView aval_types;
         TextView org_num;
-
-
         protected LatLng mMapLocation;
+
 
         public RequestHolder(View itemView) {
             super(itemView);
             mapView = (MapView) itemView.findViewById(R.id.map);
-
+            mapView.willNotCacheDrawing();
             mapView.onCreate(null);
+            mapView.onStart();
             mapView.getMapAsync(this);
             mapView.onResume();
+
+
+//         Calling mapView.onDestroy(); stops the memory leak but the map wont load
 
             textName = itemView.findViewById(R.id.name);
             org_name = itemView.findViewById(R.id.org_name);
             aval_types = itemView.findViewById(R.id.aval_types);
             org_num = itemView.findViewById(R.id.org_num);
+
 
         }
 
@@ -175,8 +179,8 @@ public class RequestDonationFragment extends Fragment {
 
             if (mGoogleMap != null) {
                 updateMapContents();
-            }
 
+            }
 
         }
 
@@ -188,7 +192,6 @@ public class RequestDonationFragment extends Fragment {
             // Update the mapView feature data and camera position.
             mGoogleMap.addMarker(new MarkerOptions().position(mMapLocation));
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(mMapLocation, 16f);
-
             mGoogleMap.moveCamera(cameraUpdate);
 
 
@@ -197,6 +200,7 @@ public class RequestDonationFragment extends Fragment {
         @Override
         public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
 
+
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             mGoogleMap = googleMap;
             MapsInitializer.initialize(itemView.getContext());
@@ -204,8 +208,8 @@ public class RequestDonationFragment extends Fragment {
             mGoogleMap.getCameraPosition();
             updateMapContents();
 
-
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(mMapLocation.latitude, mMapLocation.longitude)));
+
 
             mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
@@ -229,7 +233,11 @@ public class RequestDonationFragment extends Fragment {
         super.onStart();
         request_adapter.startListening();
 
+
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
 }
