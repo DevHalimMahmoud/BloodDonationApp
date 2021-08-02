@@ -26,7 +26,6 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.zza;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -161,9 +160,7 @@ public class RequestDonationFragment extends Fragment {
             mapView.onStart();
             mapView.getMapAsync(this);
             mapView.onResume();
-
-
-//         Calling mapView.onDestroy(); stops the memory leak but the map wont load
+            mapView.onDestroy();
 
             textName = itemView.findViewById(R.id.name);
             org_name = itemView.findViewById(R.id.org_name);

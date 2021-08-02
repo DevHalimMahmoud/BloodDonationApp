@@ -165,7 +165,7 @@ public class DonateFragment extends Fragment {
             mapView.onStart();
             mapView.getMapAsync(this);
             mapView.onResume();
-//         Calling mapView.onDestroy(); stops the memory leak but the map wont load
+            mapView.onDestroy();
 
             textName = itemView.findViewById(R.id.name);
             org_name = itemView.findViewById(R.id.org_name);
