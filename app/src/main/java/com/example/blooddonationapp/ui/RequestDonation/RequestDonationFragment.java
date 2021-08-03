@@ -156,10 +156,12 @@ public class RequestDonationFragment extends Fragment {
             super(itemView);
             mapView = (MapView) itemView.findViewById(R.id.map);
             mapView.willNotCacheDrawing();
+            mapView.getMapAsync(this);
             mapView.onCreate(null);
             mapView.onStart();
-            mapView.getMapAsync(this);
             mapView.onResume();
+            mapView.onPause();
+            mapView.onStop();
             mapView.onDestroy();
 
             textName = itemView.findViewById(R.id.name);
