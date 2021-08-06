@@ -160,8 +160,6 @@ public class RequestDonationFragment extends Fragment {
             mapView.onCreate(null);
             mapView.onStart();
             mapView.onResume();
-            mapView.onPause();
-            mapView.onStop();
             mapView.onDestroy();
 
             textName = itemView.findViewById(R.id.name);
