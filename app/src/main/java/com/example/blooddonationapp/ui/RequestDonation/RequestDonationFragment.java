@@ -59,7 +59,7 @@ public class RequestDonationFragment extends Fragment {
         init(root.getContext());
 
 
-        getRequestsList(root.getContext());
+        getRequestsList();
 
         return root;
     }
@@ -70,7 +70,7 @@ public class RequestDonationFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
     }
 
-    private void getRequestsList(Context root) {
+    private void getRequestsList() {
         Query query = db.collection("donation_hotspot");
 
         FirestoreRecyclerOptions<RequestItem> response = new FirestoreRecyclerOptions.Builder<RequestItem>()

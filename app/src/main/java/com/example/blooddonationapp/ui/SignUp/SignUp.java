@@ -18,7 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.blooddonationapp.FirebaseAuthSingleton;
+import com.example.blooddonationapp.Utils.FirebaseAuthSingleton;
 import com.example.blooddonationapp.R;
 import com.example.blooddonationapp.Activitys.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;

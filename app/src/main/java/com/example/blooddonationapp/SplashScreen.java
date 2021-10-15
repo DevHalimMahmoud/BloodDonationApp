@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.blooddonationapp.Activitys.LoginActivity;
+import com.example.blooddonationapp.Utils.FirebaseAuthSingleton;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SplashScreen extends AppCompatActivity {

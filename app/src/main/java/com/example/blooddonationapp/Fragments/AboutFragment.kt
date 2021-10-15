@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blooddonationapp.Adapters.MemberAdapter
 import com.example.blooddonationapp.R
-import com.example.blooddonationapp.Models.MemberItem
+import com.example.blooddonationapp.models.MemberItem
 import java.util.*
 
 class AboutFragment : Fragment() {

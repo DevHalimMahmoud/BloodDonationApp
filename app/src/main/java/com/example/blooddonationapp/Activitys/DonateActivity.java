@@ -29,7 +29,7 @@ public class DonateActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Intent intent;
     Spinner Spinner_BloodType1, Spinner_BloodType2;
-    EditText  amount;
+    EditText amount;
     Button send;
     CheckBox agree;
 
@@ -111,7 +111,7 @@ public class DonateActivity extends AppCompatActivity {
     }
 
     public void clear() {
-        
+
         amount.setText("");
 
     }
