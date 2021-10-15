@@ -3,7 +3,7 @@ package com.example.blooddonationapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.blooddonationapp.ui.login.Login
+import com.example.blooddonationapp.Activitys.LoginActivity
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
@@ -125,7 +125,7 @@ class MyCustomAppIntro : AppIntro2() {
     private fun checkUserStatues() {
         //no user logged in
         if (currentUser == null) {
-            val i = Intent(applicationContext, Login::class.java)
+            val i = Intent(applicationContext, LoginActivity::class.java)
             startActivity(i)
             finish()
         } else {

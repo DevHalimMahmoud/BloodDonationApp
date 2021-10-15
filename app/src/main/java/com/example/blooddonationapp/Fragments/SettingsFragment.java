@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.Settings;
+package com.example.blooddonationapp.Fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

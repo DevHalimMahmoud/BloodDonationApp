@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.About;
+package com.example.blooddonationapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,11 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blooddonationapp.R;
+import com.example.blooddonationapp.Models.MemberItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class Recyclerview extends RecyclerView.Adapter<Recyclerview.ViewHolder> {
+public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,14 +65,14 @@ public class Recyclerview extends RecyclerView.Adapter<Recyclerview.ViewHolder> 
     private Context Context;
     private List<MemberItem> Post1;
 
-    public Recyclerview(Context c, List<MemberItem> postList) {
+    public MemberAdapter(Context c, List<MemberItem> postList) {
         this.Context = c;
         this.Post1 = postList;
     }
 
     @NonNull
     @Override
-    public Recyclerview.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MemberAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View y = LayoutInflater.from(Context).inflate(R.layout.add_item, parent, false);
         return new ViewHolder(y);
     }

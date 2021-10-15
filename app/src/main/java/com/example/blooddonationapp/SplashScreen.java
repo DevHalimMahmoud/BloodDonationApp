@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.blooddonationapp.ui.login.Login;
+import com.example.blooddonationapp.Activitys.LoginActivity;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SplashScreen extends AppCompatActivity {
@@ -39,7 +39,7 @@ public class SplashScreen extends AppCompatActivity {
                     finish();
                 } else if (currentUser == null) {
                     //check if no user is logged in
-                    Intent i = new Intent(getApplicationContext(), Login.class);
+                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(i);
                     finish();
                 } else {

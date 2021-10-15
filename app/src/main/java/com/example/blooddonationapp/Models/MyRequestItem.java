@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.MyRequests;
+package com.example.blooddonationapp.Models;
 
 public class MyRequestItem {
 

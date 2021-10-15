@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.blooddonationapp.FirebaseAuthSingleton;
 import com.example.blooddonationapp.R;
-import com.example.blooddonationapp.ui.login.Login;
+import com.example.blooddonationapp.Activitys.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -111,7 +111,7 @@ public class SignUp extends AppCompatActivity {
 
     private void startActivity() {
 
-        Intent in = new Intent(SignUp.this, Login.class);
+        Intent in = new Intent(SignUp.this, LoginActivity.class);
         startActivity(in);
         finish();
     }

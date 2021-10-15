@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.About
+package com.example.blooddonationapp.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.blooddonationapp.Adapters.MemberAdapter
 import com.example.blooddonationapp.R
+import com.example.blooddonationapp.Models.MemberItem
 import java.util.*
 
 class AboutFragment : Fragment() {
@@ -29,7 +31,10 @@ class AboutFragment : Fragment() {
         data_about.add(MemberItem("Ahmed Abraham", "2018030003", R.drawable.default_account))
 
         val recyclerView1 = root.findViewById<View>(R.id.recyclerview1) as RecyclerView
-        val recyclerview = Recyclerview(context, data_about)
+        val recyclerview = MemberAdapter(
+            context,
+            data_about
+        )
         recyclerView1.layoutManager = LinearLayoutManager(context)
         recyclerView1.adapter = recyclerview
         return root

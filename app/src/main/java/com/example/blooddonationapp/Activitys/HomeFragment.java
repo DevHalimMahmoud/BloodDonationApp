@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.home;
+package com.example.blooddonationapp.Activitys;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

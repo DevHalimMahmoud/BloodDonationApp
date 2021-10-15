@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.login;
+package com.example.blooddonationapp.Activitys;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,12 +19,11 @@ import com.example.blooddonationapp.ui.SignUp.SignUp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     TextView new_user;
     Button Done_login;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -59,7 +58,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent in = new Intent(Login.this, SignUp.class);
+                Intent in = new Intent(LoginActivity.this, SignUp.class);
                 startActivity(in);
 
             }
@@ -101,7 +100,7 @@ public class Login extends AppCompatActivity {
                         if (document.get("user_type").toString().equals("user")) {
 
 
-                            Intent in = new Intent(Login.this, MainActivity.class);
+                            Intent in = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(in);
                             finish();
 

@@ -17,7 +17,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.blooddonationapp.ui.login.Login;
+import com.example.blooddonationapp.Activitys.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         if (item.getItemId() == R.id.action_settings) {
             mAuth.getInstance().signOut();
-            Intent in = new Intent(getApplicationContext(), Login.class);
+            Intent in = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(in);
             finish();
             return true;

@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.Donate;
+package com.example.blooddonationapp.Activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DonateForm extends AppCompatActivity {
+public class DonateActivity extends AppCompatActivity {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Intent intent;
@@ -77,7 +77,7 @@ public class DonateForm extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(DonateForm.this, "Request Sent", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(DonateActivity.this, "Request Sent", Toast.LENGTH_LONG).show();
                                     clear();
                                     finish();
                                 }
@@ -85,14 +85,14 @@ public class DonateForm extends AppCompatActivity {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(DonateForm.this, "ERROR TRY AGAIN", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(DonateActivity.this, "ERROR TRY AGAIN", Toast.LENGTH_SHORT).show();
                                     clear();
 
                                 }
                             });
                 } else {
 
-                    Toast.makeText(DonateForm.this, "Please Complete the form", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DonateActivity.this, "Please Complete the form", Toast.LENGTH_SHORT).show();
 
                 }
             }

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.blooddonationapp.ui.home.HomeFragment"
+        android:name="com.example.blooddonationapp.Activitys.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/nav_Donate"
-        android:name="com.example.blooddonationapp.ui.Donate.DonateFragment"
+        android:name="com.example.blooddonationapp.Fragments.DonateFragment"
         android:label="@string/menu_donate"
         tools:layout="@layout/fragment_donate" />
 
@@ -44,12 +44,12 @@
     </fragment>
     <fragment
         android:id="@+id/nav_Settings"
-        android:name="com.example.blooddonationapp.ui.Settings.SettingsFragment"
+        android:name="com.example.blooddonationapp.Fragments.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/nav_About"
-        android:name="com.example.blooddonationapp.ui.About.AboutFragment"
+        android:name="com.example.blooddonationapp.Fragments.AboutFragment"
         android:label="@string/menu_about"
         tools:layout="@layout/fragment_about" />
     <activity
@@ -59,7 +59,7 @@
         tools:layout="@layout/activity_request_form" />
     <fragment
         android:id="@+id/nav_my_requests"
-        android:name="com.example.blooddonationapp.ui.MyRequests.MyRequestsFragment"
+        android:name="com.example.blooddonationapp.Fragments.MyRequestsFragment"
         android:label="@string/my_requests"
         tools:layout="@layout/my_requests_fragment"/>
 </navigation>

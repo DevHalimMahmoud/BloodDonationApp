@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.Donate;
+package com.example.blooddonationapp.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.blooddonationapp.Activitys.DonateActivity;
 import com.example.blooddonationapp.R;
 import com.example.blooddonationapp.ui.RequestDonation.RequestItem;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -114,7 +115,7 @@ public class DonateFragment extends Fragment {
 
                     DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAbsoluteAdapterPosition());
 
-                    Intent intent = new Intent(getContext(), DonateForm.class);
+                    Intent intent = new Intent(getContext(), DonateActivity.class);
                     intent.putExtra("hotspot_id", snapshot.getId().toString());
                     intent.putExtra("org_id", requestItem.getOrg_id().toString());
 
