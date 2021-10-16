@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.RequestDonation
+package com.example.blooddonationapp.models
 
 import com.google.firebase.firestore.GeoPoint
 

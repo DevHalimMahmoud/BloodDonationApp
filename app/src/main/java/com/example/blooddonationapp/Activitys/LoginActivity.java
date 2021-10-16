@@ -13,9 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.blooddonationapp.Utils.FirebaseAuthSingleton;
-import com.example.blooddonationapp.MainActivity;
 import com.example.blooddonationapp.R;
-import com.example.blooddonationapp.ui.SignUp.SignUp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -58,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent in = new Intent(LoginActivity.this, SignUp.class);
+                Intent in = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(in);
 
             }

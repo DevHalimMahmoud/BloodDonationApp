@@ -5,28 +5,26 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
+import com.example.blooddonationapp.Activitys.RequestActivity;
 import com.example.blooddonationapp.R;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.instanceOf;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class DonateActivityTest {
     @Rule
-    public ActivityScenarioRule<RequestForm> activityRule =
-            new ActivityScenarioRule(RequestForm.class);
+    public ActivityScenarioRule<RequestActivity> activityRule =
+            new ActivityScenarioRule(RequestActivity.class);
 
     @Test
     public void myClassMethod_ReturnsTrue() {

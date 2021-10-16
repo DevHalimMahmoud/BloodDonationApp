@@ -1,4 +1,4 @@
-package com.example.blooddonationapp;
+package com.example.blooddonationapp.Activitys;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +18,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.blooddonationapp.Activitys.LoginActivity;
+import com.example.blooddonationapp.R;
 import com.example.blooddonationapp.Utils.FirebaseAuthSingleton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

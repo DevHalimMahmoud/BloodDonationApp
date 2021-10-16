@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.RequestDonation;
+package com.example.blooddonationapp.Activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,9 +23,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
-public class RequestForm extends AppCompatActivity {
+public class RequestActivity extends AppCompatActivity {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Intent intent;
@@ -78,7 +77,7 @@ public class RequestForm extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(RequestForm.this, "Request Sent", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(RequestActivity.this, "Request Sent", Toast.LENGTH_LONG).show();
                                     clear();
                                     finish();
                                 }
@@ -86,14 +85,14 @@ public class RequestForm extends AppCompatActivity {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(RequestForm.this, "ERROR TRY AGAIN", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RequestActivity.this, "ERROR TRY AGAIN", Toast.LENGTH_SHORT).show();
                                     clear();
 
                                 }
                             });
                 } else {
 
-                    Toast.makeText(RequestForm.this, "Please Complete the form", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RequestActivity.this, "Please Complete the form", Toast.LENGTH_SHORT).show();
 
                 }
             }

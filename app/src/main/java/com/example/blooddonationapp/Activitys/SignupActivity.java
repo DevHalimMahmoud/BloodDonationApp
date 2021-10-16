@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.ui.SignUp;
+package com.example.blooddonationapp.Activitys;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,7 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.blooddonationapp.Utils.FirebaseAuthSingleton;
 import com.example.blooddonationapp.R;
-import com.example.blooddonationapp.Activitys.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,7 +32,7 @@ import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
-public class SignUp extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
     private FirebaseAuthSingleton mAuth = FirebaseAuthSingleton.INSTANCE;
     CheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7, checkBox8, checkBox9, checkBox10;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -50,7 +49,6 @@ public class SignUp extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         dataBinding();
         signUp();
-
 
     }
 
@@ -89,10 +87,8 @@ public class SignUp extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-
                         verifyEmail();
                         startActivity();
-
 
                     }
                 })
@@ -111,7 +107,7 @@ public class SignUp extends AppCompatActivity {
 
     private void startActivity() {
 
-        Intent in = new Intent(SignUp.this, LoginActivity.class);
+        Intent in = new Intent(SignupActivity.this, LoginActivity.class);
         startActivity(in);
         finish();
     }
