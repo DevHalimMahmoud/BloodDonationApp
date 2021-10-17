@@ -37,32 +37,32 @@
             android:value="AIzaSyAIJuDlVerwb2s6TuhzXMo-_xPVBg-vEx0" />
 
         <activity
-            android:name=".Fragments.AppIntro"
+            android:name=".fragments.AppIntro"
             android:label="My Custom AppIntro"
             android:theme="@style/Theme.BloodDonationApp.NoActionBar" />
         <activity
-            android:name=".Activitys.RequestActivity"
+            android:name=".activities.RequestActivity"
             android:label="Request Form"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activitys.DonateActivity"
+            android:name=".activities.DonateActivity"
             android:label="Donate Form"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activitys.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/title_activity_project"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BloodDonationApp.NoActionBar" />
         <activity
-            android:name=".Activitys.SignupActivity"
+            android:name=".activities.SignupActivity"
             android:label="@string/sign_up"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activitys.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BloodDonationApp.NoActionBar" />
         <activity
-            android:name=".Activitys.SplashScreen"
+            android:name=".activities.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BloodDonationApp.NoActionBar">
             <intent-filter>

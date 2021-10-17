@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.Activitys;
+package com.example.blooddonationapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,19 +24,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DonateActivity extends AppCompatActivity {
+public class RequestActivity extends AppCompatActivity {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Intent intent;
     Spinner Spinner_BloodType1, Spinner_BloodType2;
-    EditText amount;
+    EditText reason, amount;
     Button send;
     CheckBox agree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_donate_form);
+        setContentView(R.layout.activity_request_form);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String[] arr_BloodType_data1 = {"A", "B", "AB", "O"};
@@ -51,7 +51,7 @@ public class DonateActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, arr_BloodType_data2);
         data.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner_BloodType2.setAdapter(data);
-
+        reason = findViewById(R.id.reason);
         amount = findViewById(R.id.amount);
         send = findViewById(R.id.button);
         agree = findViewById(R.id.checkBox);
@@ -60,12 +60,12 @@ public class DonateActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (agree.isChecked() && !amount.getText().toString().isEmpty()) {
+                if (agree.isChecked() && !amount.getText().toString().isEmpty() && !reason.getText().toString().isEmpty()) {
                     String type = Spinner_BloodType1.getSelectedItem().toString() + Spinner_BloodType2.getSelectedItem().toString();
                     Map<String, Object> data = new HashMap<>();
                     data.put("amount", amount.getText().toString());
-                    data.put("medical_reason", "This user is donating");
-                    data.put("reason", "donate");
+                    data.put("medical_reason", reason.getText().toString());
+                    data.put("reason", "request");
                     data.put("status", "pending");
                     data.put("user_id", mAuth.getCurrentUser().getUid().toString());
                     data.put("org_id", intent.getStringExtra("org_id"));
@@ -77,7 +77,7 @@ public class DonateActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(DonateActivity.this, "Request Sent", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(RequestActivity.this, "Request Sent", Toast.LENGTH_LONG).show();
                                     clear();
                                     finish();
                                 }
@@ -85,14 +85,14 @@ public class DonateActivity extends AppCompatActivity {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(DonateActivity.this, "ERROR TRY AGAIN", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RequestActivity.this, "ERROR TRY AGAIN", Toast.LENGTH_SHORT).show();
                                     clear();
 
                                 }
                             });
                 } else {
 
-                    Toast.makeText(DonateActivity.this, "Please Complete the form", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RequestActivity.this, "Please Complete the form", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -111,7 +111,7 @@ public class DonateActivity extends AppCompatActivity {
     }
 
     public void clear() {
-
+        reason.setText("");
         amount.setText("");
 
     }

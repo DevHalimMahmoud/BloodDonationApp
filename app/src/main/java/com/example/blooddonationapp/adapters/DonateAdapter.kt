@@ -1,5 +1,4 @@
-package com.example.blooddonationapp.Adapters
-
+package com.example.blooddonationapp.adapters
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.example.blooddonationapp.models.RequestItem
@@ -9,7 +8,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
-import com.example.blooddonationapp.Activitys.RequestActivity
+import com.example.blooddonationapp.activities.DonateActivity
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
@@ -22,19 +21,18 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.LatLng
 import java.util.*
 
-class RequestDonationAdapter(
-    options: FirestoreRecyclerOptions<RequestItem?>
-) : FirestoreRecyclerAdapter<RequestItem, RequestDonationAdapter.RequestHolder>(options) {
-    protected var mGoogleMap: GoogleMap? = null
-    var mapView: MapView? = null
+class DonateAdapter(options: FirestoreRecyclerOptions<RequestItem?>) :
+    FirestoreRecyclerAdapter<RequestItem, DonateAdapter.RequestHolder>(options) {
     private val db = FirebaseFirestore.getInstance()
+    private var mGoogleMap: GoogleMap? = null
+    var mapView: MapView? = null
     public override fun onBindViewHolder(
         holder: RequestHolder,
         position: Int,
         requestItem: RequestItem
     ) {
         holder.textName.text = requestItem.name
-        holder.aval_types.text = requestItem.most_available
+        holder.needed_types.text = requestItem.most_needed
         holder.setMapLocation(requestItem.location!!.latitude, requestItem.location!!.longitude)
         val docRef = db.collection("users").document(requestItem.org_id.toString())
         docRef.get().addOnCompleteListener { task ->
@@ -52,7 +50,7 @@ class RequestDonationAdapter(
         }
         holder.itemView.setOnClickListener { v: View? ->
             val snapshot = snapshots.getSnapshot(holder.absoluteAdapterPosition)
-            val intent = Intent(holder.itemView.context, RequestActivity::class.java)
+            val intent = Intent(holder.itemView.context, DonateActivity::class.java)
             intent.putExtra("hotspot_id", snapshot.id)
             intent.putExtra("org_id", requestItem.org_id.toString())
             holder.itemView.context.startActivity(intent)
@@ -73,8 +71,9 @@ class RequestDonationAdapter(
         OnMapReadyCallback {
         var textName: TextView
         var org_name: TextView
-        var aval_types: TextView
+        var needed_types: TextView
         var org_num: TextView
+        var types_text: TextView
         protected var mMapLocation: LatLng? = null
         fun setMapLocation(lat: Double, lon: Double) {
             mMapLocation = LatLng(lat, lon)
@@ -127,8 +126,10 @@ class RequestDonationAdapter(
             mapView!!.onDestroy()
             textName = itemView.findViewById(R.id.name)
             org_name = itemView.findViewById(R.id.org_name)
-            aval_types = itemView.findViewById(R.id.aval_types)
+            needed_types = itemView.findViewById(R.id.aval_types)
             org_num = itemView.findViewById(R.id.org_num)
+            types_text = itemView.findViewById(R.id.types_text)
+            types_text.setText(R.string.nedeed_types_1)
         }
     }
 }

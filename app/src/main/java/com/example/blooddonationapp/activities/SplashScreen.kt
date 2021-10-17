@@ -1,11 +1,11 @@
-package com.example.blooddonationapp.Activitys
+package com.example.blooddonationapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
-import com.example.blooddonationapp.Utils.FirebaseAuthSingleton
+import com.example.blooddonationapp.utils.FirebaseAuthSingleton
 import android.os.Bundle
 import com.example.blooddonationapp.R
 import android.content.Intent
-import com.example.blooddonationapp.Fragments.AppIntro
+import com.example.blooddonationapp.fragments.AppIntro
 import android.os.Handler
 import android.widget.ProgressBar
 

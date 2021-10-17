@@ -1,11 +1,11 @@
-package com.example.blooddonationapp.Adapters
+package com.example.blooddonationapp.adapters
 
 import android.util.Log
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.example.blooddonationapp.models.MyRequestItem
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.example.blooddonationapp.Adapters.MyRequestAdapter.MyRequestHolder
+import com.example.blooddonationapp.adapters.MyRequestAdapter.MyRequestHolder
 import com.google.firebase.firestore.FirebaseFirestore
 import android.view.ViewGroup
 import android.view.LayoutInflater

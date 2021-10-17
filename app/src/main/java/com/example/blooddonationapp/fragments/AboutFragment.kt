@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.Fragments
+package com.example.blooddonationapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.blooddonationapp.Adapters.MemberAdapter
+import com.example.blooddonationapp.adapters.MemberAdapter
 import com.example.blooddonationapp.R
 import com.example.blooddonationapp.models.MemberItem
 import java.util.*

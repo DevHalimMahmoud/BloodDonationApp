@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.Adapters
+package com.example.blooddonationapp.adapters
 
 import android.content.Context
 

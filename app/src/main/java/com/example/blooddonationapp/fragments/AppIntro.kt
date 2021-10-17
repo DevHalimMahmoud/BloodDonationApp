@@ -1,12 +1,12 @@
-package com.example.blooddonationapp.Fragments
+package com.example.blooddonationapp.fragments
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.blooddonationapp.Activitys.LoginActivity
-import com.example.blooddonationapp.Activitys.MainActivity
+import com.example.blooddonationapp.activities.LoginActivity
+import com.example.blooddonationapp.activities.MainActivity
 import com.example.blooddonationapp.R
-import com.example.blooddonationapp.Utils.FirebaseAuthSingleton
+import com.example.blooddonationapp.utils.FirebaseAuthSingleton
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType

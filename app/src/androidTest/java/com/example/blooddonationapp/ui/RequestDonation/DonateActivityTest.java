@@ -5,7 +5,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
-import com.example.blooddonationapp.Activitys.RequestActivity;
+import com.example.blooddonationapp.activities.RequestActivity;
 import com.example.blooddonationapp.R;
 
 import org.junit.Rule;

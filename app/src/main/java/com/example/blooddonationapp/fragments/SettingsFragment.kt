@@ -1,7 +1,7 @@
-package com.example.blooddonationapp.Fragments
+package com.example.blooddonationapp.fragments
 
 import android.app.AlertDialog
-import com.example.blooddonationapp.Utils.FirebaseAuthSingleton
+import com.example.blooddonationapp.utils.FirebaseAuthSingleton
 import com.google.firebase.firestore.FirebaseFirestore
 import android.view.LayoutInflater
 import android.view.ViewGroup

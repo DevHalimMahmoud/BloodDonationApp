@@ -1,6 +1,7 @@
-package com.example.blooddonationapp.Fragments
+package com.example.blooddonationapp.fragments
 
 import android.content.Context
+import com.example.blooddonationapp.utils.FirebaseAuthSingleton
 import com.google.firebase.firestore.FirebaseFirestore
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
@@ -12,11 +13,11 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.blooddonationapp.R
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.example.blooddonationapp.models.RequestItem
-import com.example.blooddonationapp.Adapters.DonateAdapter
-import com.google.firebase.firestore.Query
+import com.example.blooddonationapp.models.MyRequestItem
+import com.example.blooddonationapp.adapters.MyRequestAdapter
 
-class DonateFragment : Fragment() {
+class MyRequestsFragment : Fragment() {
+    private val mAuth = FirebaseAuthSingleton
     private var db: FirebaseFirestore? = null
     var request_item: RecyclerView? = null
     private var request_adapter: FirestoreRecyclerAdapter<*, *>? = null
@@ -25,10 +26,10 @@ class DonateFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_request_donation, container, false)
+        val root = inflater.inflate(R.layout.my_requests_fragment, container, false)
         request_item = root.findViewById(R.id.list)
         init(root.context)
-        getRequestsList(root.context)
+        getRequestsList()
         return root
     }
 
@@ -39,12 +40,15 @@ class DonateFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
     }
 
-    private fun getRequestsList(root: Context) {
-        val query: Query = db!!.collection("donation_hotspot")
-        val response = FirestoreRecyclerOptions.Builder<RequestItem>()
-            .setQuery(query, RequestItem::class.java)
+    private fun getRequestsList() {
+        val query = db!!.collection("requests").whereEqualTo(
+            "user_id", mAuth.instance!!.currentUser!!
+                .uid
+        )
+        val response = FirestoreRecyclerOptions.Builder<MyRequestItem>()
+            .setQuery(query, MyRequestItem::class.java)
             .build()
-        request_adapter = DonateAdapter(response)
+        request_adapter = MyRequestAdapter(response)
         request_item!!.adapter = request_adapter
     }
 

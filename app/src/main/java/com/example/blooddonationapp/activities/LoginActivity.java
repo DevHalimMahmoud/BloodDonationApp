@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.Activitys;
+package com.example.blooddonationapp.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.blooddonationapp.Utils.FirebaseAuthSingleton;
+import com.example.blooddonationapp.utils.FirebaseAuthSingleton;
 import com.example.blooddonationapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

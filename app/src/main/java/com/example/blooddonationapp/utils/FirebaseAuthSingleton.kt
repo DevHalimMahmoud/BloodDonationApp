@@ -1,4 +1,4 @@
-package com.example.blooddonationapp.Utils
+package com.example.blooddonationapp.utils
 
 import com.google.firebase.auth.FirebaseAuth
 
