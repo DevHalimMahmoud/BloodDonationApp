@@ -1,15 +1,15 @@
 package com.example.blooddonationapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
-import com.example.blooddonationapp.utils.FirebaseAuthSingleton
-import android.os.Bundle
-import com.example.blooddonationapp.R
 import android.content.Intent
-import com.example.blooddonationapp.fragments.AppIntro
+import android.os.Bundle
 import android.os.Handler
 import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
+import com.example.blooddonationapp.R
+import com.example.blooddonationapp.fragments.AppIntro
+import com.example.blooddonationapp.utils.FirebaseAuthSingleton
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreenActivity : AppCompatActivity() {
     var progressBar: ProgressBar? = null
     private val mAuth = FirebaseAuthSingleton
     private val currentUser = mAuth.instance!!.currentUser

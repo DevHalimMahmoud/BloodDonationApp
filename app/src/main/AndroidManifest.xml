@@ -62,7 +62,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BloodDonationApp.NoActionBar" />
         <activity
-            android:name=".activities.SplashScreen"
+            android:name=".activities.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.BloodDonationApp.NoActionBar">
             <intent-filter>
