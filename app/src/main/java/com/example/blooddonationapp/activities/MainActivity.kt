@@ -6,50 +6,40 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.blooddonationapp.R
-import com.example.blooddonationapp.utils.FirebaseAuthSingleton
+import com.example.blooddonationapp.viewModels.MainActivityViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.firestore.FirebaseFirestore
-import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
-    private val mAuth = FirebaseAuthSingleton
-    private val db = FirebaseFirestore.getInstance()
+
     private var mAppBarConfiguration: AppBarConfiguration? = null
+    private val model: MainActivityViewModel by viewModels()
     var name: TextView? = null
     var email: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         val view = navigationView.getHeaderView(0)
         name = view.findViewById(R.id.header_name)
         email = view.findViewById(R.id.header_email)
-        val email_t = Objects.requireNonNull(mAuth.instance!!.currentUser)
-            ?.email.toString()
-        email?.setText(email_t)
-        val docRef = mAuth.instance!!.uid?.let {
-            db.collection("users").document(
+        email?.text = model.getUserEmail()
+        model.userNameLiveData.observe(this, Observer {
+            name?.text = it
+        })
 
-                it
-
-            )
-        }
-        docRef?.get()?.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val document = task.result
-                if (document!!.exists()) {
-                    name?.setText(Objects.requireNonNull(document["name"]).toString())
-                }
-            }
-        }
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         val fab = findViewById<FloatingActionButton>(R.id.fab)
@@ -57,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data =
                 Uri.parse("mailto:abdomahmoud20060@gmail.com") // only email apps should handle this
-            intent.putExtra(Intent.EXTRA_SUBJECT, mAuth.instance!!.currentUser!!.uid)
+            intent.putExtra(Intent.EXTRA_SUBJECT, model.getCurrentUser())
             intent.putExtra(Intent.EXTRA_TEXT, "Write The Problem Here")
             startActivity(intent)
         }
@@ -96,7 +86,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection
         if (item.itemId == R.id.action_settings) {
-            mAuth.instance!!.signOut()
+            model.signOut()
             val `in` = Intent(applicationContext, LoginActivity::class.java)
             startActivity(`in`)
             finish()
@@ -108,8 +98,6 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_home)
-        //        moveTaskToBack(true);
-//        finish();
-//        System.runFinalizersOnExit(true);
+
     }
 }
