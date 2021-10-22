@@ -12,11 +12,11 @@ import java.util.*
 
 class DonateActivity : AppCompatActivity() {
 
-    var Spinner_BloodType1: Spinner? = null
-    var Spinner_BloodType2: Spinner? = null
+    private var Spinner_BloodType1: Spinner? = null
+    private var Spinner_BloodType2: Spinner? = null
     var amount: EditText? = null
-    var send: Button? = null
-    var agree: CheckBox? = null
+    private var send: Button? = null
+    private var agree: CheckBox? = null
     private val model: DonateActivityViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +42,7 @@ class DonateActivity : AppCompatActivity() {
         amount = findViewById(R.id.amount)
         send = findViewById(R.id.button)
         agree = findViewById(R.id.checkBox)
-        send?.setOnClickListener(View.OnClickListener {
+        send?.setOnClickListener {
             if (agree?.isChecked == true && amount?.text.toString().isNotEmpty()) {
                 val type =
                     Spinner_BloodType1!!.selectedItem.toString() + Spinner_BloodType2!!.selectedItem.toString()
@@ -74,7 +74,7 @@ class DonateActivity : AppCompatActivity() {
                 Toast.makeText(this@DonateActivity, "Please Complete the form", Toast.LENGTH_SHORT)
                     .show()
             }
-        })
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
