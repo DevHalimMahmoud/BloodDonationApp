@@ -10,7 +10,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -24,8 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     private var mAppBarConfiguration: AppBarConfiguration? = null
     private val model: MainActivityViewModel by viewModels()
-    var name: TextView? = null
-    var email: TextView? = null
+    private var name: TextView? = null
+    private var email: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         name = view.findViewById(R.id.header_name)
         email = view.findViewById(R.id.header_email)
         email?.text = model.getUserEmail()
-        model.userNameLiveData.observe(this, Observer {
+        model.userNameLiveData.observe(this, {
             name?.text = it
         })
 
