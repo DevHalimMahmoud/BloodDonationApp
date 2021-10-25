@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val view = navigationView.getHeaderView(0)
         name = view.findViewById(R.id.header_name)
         email = view.findViewById(R.id.header_email)
-        email?.text = model.getUserEmail()
+        email?.text = model.email
         model.userNameLiveData.observe(this, {
             name?.text = it
         })
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data =
                 Uri.parse("mailto:abdomahmoud20060@gmail.com") // only email apps should handle this
-            intent.putExtra(Intent.EXTRA_SUBJECT, model.getCurrentUser())
+            intent.putExtra(Intent.EXTRA_SUBJECT, model.uid)
             intent.putExtra(Intent.EXTRA_TEXT, "Write The Problem Here")
             startActivity(intent)
         }

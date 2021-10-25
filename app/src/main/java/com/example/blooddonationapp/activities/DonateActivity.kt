@@ -43,20 +43,22 @@ class DonateActivity : AppCompatActivity() {
         send = findViewById(R.id.button)
         agree = findViewById(R.id.checkBox)
         send?.setOnClickListener {
+
+
             if (agree?.isChecked == true && amount?.text.toString().isNotEmpty()) {
+                
                 val type =
                     Spinner_BloodType1!!.selectedItem.toString() + Spinner_BloodType2!!.selectedItem.toString()
-                val donateData: MutableMap<String, Any?> = HashMap()
-                donateData["amount"] = amount?.text.toString()
-                donateData["medical_reason"] = "This user is donating"
-                donateData["reason"] = "donate"
-                donateData["status"] = "pending"
-                donateData["user_id"] = model.getCurrentUser()
-                donateData["org_id"] = intent.getStringExtra("org_id")
-                donateData["hotspot_id"] = intent.getStringExtra("hotspot_id")
-                donateData["type"] = type
 
-                model.addData(donateData).addOnSuccessListener {
+                model.data["amount"] = amount?.text.toString()
+                model.data["medical_reason"] = "This user is donating"
+                model.data["reason"] = "donate"
+                model.data["status"] = "pending"
+                model.data["user_id"] = model.uid
+                model.data["org_id"] = intent.getStringExtra("org_id")!!
+                model.data["hotspot_id"] = intent.getStringExtra("hotspot_id")!!
+                model.data["type"] = type
+                model.addDataResult.addOnSuccessListener {
                     Toast.makeText(this@DonateActivity, "Request Sent", Toast.LENGTH_LONG)
                         .show()
                     clear()
@@ -69,6 +71,7 @@ class DonateActivity : AppCompatActivity() {
                     clear()
 
                 }
+
 
             } else {
                 Toast.makeText(this@DonateActivity, "Please Complete the form", Toast.LENGTH_SHORT)
