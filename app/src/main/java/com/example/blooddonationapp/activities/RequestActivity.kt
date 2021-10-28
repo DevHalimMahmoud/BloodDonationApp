@@ -2,23 +2,21 @@ package com.example.blooddonationapp.activities
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import android.widget.*
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.blooddonationapp.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.blooddonationapp.viewModels.RequestActivityViewModel
 import java.util.*
 
 class RequestActivity : AppCompatActivity() {
-    var mAuth = FirebaseAuth.getInstance()
-    var db = FirebaseFirestore.getInstance()
     var Spinner_BloodType1: Spinner? = null
     var Spinner_BloodType2: Spinner? = null
     var reason: EditText? = null
     var amount: EditText? = null
     var send: Button? = null
     var agree: CheckBox? = null
+    private val model: RequestActivityViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_request_form)
@@ -38,34 +36,32 @@ class RequestActivity : AppCompatActivity() {
             android.R.layout.simple_list_item_1, arr_BloodType_data2
         )
         data.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        Spinner_BloodType2?.setAdapter(data)
+        Spinner_BloodType2?.adapter = data
         reason = findViewById(R.id.reason)
         amount = findViewById(R.id.amount)
         send = findViewById(R.id.button)
         agree = findViewById(R.id.checkBox)
-        send?.setOnClickListener(View.OnClickListener {
-            if (agree?.isChecked == true && amount?.text.toString().isNotEmpty() && !reason?.text
-                    .toString().isEmpty()
+        send?.setOnClickListener {
+            if (agree?.isChecked == true && amount?.text.toString().isNotEmpty() && reason?.text
+                    .toString().isNotEmpty()
             ) {
                 val type = Spinner_BloodType1?.selectedItem
                     .toString() + Spinner_BloodType2?.selectedItem.toString()
-                val data: MutableMap<String, Any?> = HashMap()
-                data["amount"] = amount?.text.toString()
-                data["medical_reason"] = reason?.getText().toString()
-                data["reason"] = "request"
-                data["status"] = "pending"
-                data["user_id"] = mAuth.currentUser!!.uid
-                data["org_id"] = getIntent().getStringExtra("org_id")
-                data["hotspot_id"] = getIntent().getStringExtra("hotspot_id")
-                data["type"] = type
-                db.collection("requests")
-                    .add(data)
-                    .addOnSuccessListener {
-                        Toast.makeText(this@RequestActivity, "Request Sent", Toast.LENGTH_LONG)
-                            .show()
-                        clear()
-                        finish()
-                    }
+
+                model.data["amount"] = amount?.text.toString()
+                model.data["medical_reason"] = reason?.getText().toString()
+                model.data["reason"] = "request"
+                model.data["status"] = "pending"
+                model.data["user_id"] = model.uid
+                model.data["org_id"] = intent.getStringExtra("org_id")
+                model.data["hotspot_id"] = intent.getStringExtra("hotspot_id")
+                model.data["type"] = type
+                model.addDataResult.addOnSuccessListener {
+                    Toast.makeText(this@RequestActivity, "Request Sent", Toast.LENGTH_LONG)
+                        .show()
+                    clear()
+                    finish()
+                }
                     .addOnFailureListener {
                         Toast.makeText(this@RequestActivity, "ERROR TRY AGAIN", Toast.LENGTH_SHORT)
                             .show()
@@ -75,7 +71,7 @@ class RequestActivity : AppCompatActivity() {
                 Toast.makeText(this@RequestActivity, "Please Complete the form", Toast.LENGTH_SHORT)
                     .show()
             }
-        })
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
