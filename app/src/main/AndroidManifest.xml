@@ -37,7 +37,7 @@
             android:value="AIzaSyAIJuDlVerwb2s6TuhzXMo-_xPVBg-vEx0" />
 
         <activity
-            android:name=".fragments.AppIntro"
+            android:name=".activities.AppIntro"
             android:label="My Custom AppIntro"
             android:theme="@style/Theme.BloodDonationApp.NoActionBar" />
         <activity

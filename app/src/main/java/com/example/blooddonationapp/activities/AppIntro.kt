@@ -1,19 +1,19 @@
-package com.example.blooddonationapp.fragments
+package com.example.blooddonationapp.activities
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import com.example.blooddonationapp.activities.LoginActivity
-import com.example.blooddonationapp.activities.MainActivity
 import com.example.blooddonationapp.R
 import com.example.blooddonationapp.utils.FirebaseAuthSingleton
+import com.example.blooddonationapp.viewModels.AppIntroViewModel
+import com.example.blooddonationapp.viewModels.SplashScreenActivityViewModel
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
 
 class AppIntro : AppIntro2() {
-
-    private val currentUser = FirebaseAuthSingleton.instance!!.currentUser
+    private val model: AppIntroViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -127,7 +127,7 @@ class AppIntro : AppIntro2() {
 
     private fun checkUserStatues() {
         //no user logged in
-        if (currentUser == null) {
+        if (model.currentUser == null) {
             val i = Intent(applicationContext, LoginActivity::class.java)
             startActivity(i)
             finish()

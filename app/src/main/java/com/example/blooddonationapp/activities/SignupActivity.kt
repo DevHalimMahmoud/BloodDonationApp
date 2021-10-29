@@ -1,19 +1,18 @@
 package com.example.blooddonationapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
-import com.example.blooddonationapp.utils.FirebaseAuthSingleton
-import com.google.firebase.firestore.FirebaseFirestore
-import android.os.Bundle
-import com.example.blooddonationapp.R
 import android.app.Activity
-
-import android.content.Intent
 import android.content.ContentValues
+import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
-import java.util.HashMap
+import androidx.appcompat.app.AppCompatActivity
+import com.example.blooddonationapp.R
+import com.example.blooddonationapp.utils.FirebaseAuthSingleton
+import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
 
 class SignupActivity : AppCompatActivity() {
     private val mAuth = FirebaseAuthSingleton

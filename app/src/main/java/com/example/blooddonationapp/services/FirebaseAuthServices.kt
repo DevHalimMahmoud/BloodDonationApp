@@ -1,16 +1,21 @@
 package com.example.blooddonationapp.services
 
 import com.example.blooddonationapp.utils.FirebaseAuthSingleton
+import com.google.firebase.auth.FirebaseUser
 
 
-fun getCurrentUser(): String {
+fun getCurrentUserId(): String? {
 
-    return FirebaseAuthSingleton.instance?.uid.toString()
+    return FirebaseAuthSingleton.instance?.uid
+}
+fun getCurrentUser(): FirebaseUser? {
+
+    return FirebaseAuthSingleton.instance!!.currentUser
 }
 
 
-fun getUserEmail(): String {
+fun getUserEmail(): String? {
 
-    return FirebaseAuthSingleton.instance?.currentUser?.email.toString()
+    return FirebaseAuthSingleton.instance?.currentUser?.email
 }
 

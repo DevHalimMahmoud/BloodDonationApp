@@ -4,15 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.widget.ProgressBar
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.blooddonationapp.R
-import com.example.blooddonationapp.fragments.AppIntro
-import com.example.blooddonationapp.utils.FirebaseAuthSingleton
+import com.example.blooddonationapp.viewModels.SplashScreenActivityViewModel
 
 class SplashScreenActivity : AppCompatActivity() {
     var progressBar: ProgressBar? = null
-    private val mAuth = FirebaseAuthSingleton
-    private val currentUser = mAuth.instance!!.currentUser
+
+    private val model: SplashScreenActivityViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
@@ -26,7 +26,8 @@ class SplashScreenActivity : AppCompatActivity() {
                     startActivity(s)
                     finish()
                 }
-                currentUser == null -> {
+                model.currentUser == null -> {
+
                     //check if no user is logged in
                     val i = Intent(applicationContext, LoginActivity::class.java)
                     startActivity(i)
@@ -38,6 +39,7 @@ class SplashScreenActivity : AppCompatActivity() {
                     finish()
                 }
             }
+
         }, 1000)
     }
 
