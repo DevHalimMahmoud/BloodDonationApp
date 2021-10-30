@@ -1,11 +1,10 @@
 package com.example.blooddonationapp.services
 
 import androidx.lifecycle.MutableLiveData
-import com.example.blooddonationapp.utils.FirebaseAuthSingleton
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import java.util.HashMap
+import java.util.*
 
 fun addDonationData(data: HashMap<String, Any?>): Task<DocumentReference> {
 
@@ -18,11 +17,11 @@ fun addDonationData(data: HashMap<String, Any?>): Task<DocumentReference> {
 }
 
 fun getUserName(): MutableLiveData<String> {
+
     return MutableLiveData<String>().apply {
 
-
         val db = FirebaseFirestore.getInstance()
-        FirebaseAuthSingleton.instance?.uid.let {
+        getCurrentUserId().let {
             db.collection("users").document(
                 it!!
             )
@@ -32,5 +31,15 @@ fun getUserName(): MutableLiveData<String> {
 
         }
     }
+}
 
+fun addUserDataToFirestore(data: HashMap<String, Any?>): Task<Void> {
+
+    return FirebaseFirestore.getInstance().collection("users")
+        .document(getCurrentUserId().toString())
+        .set(data).addOnSuccessListener {
+            return@addOnSuccessListener
+        }.addOnFailureListener {
+            return@addOnFailureListener
+        }
 }

@@ -5,9 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import com.example.blooddonationapp.R
-import com.example.blooddonationapp.utils.FirebaseAuthSingleton
 import com.example.blooddonationapp.viewModels.AppIntroViewModel
-import com.example.blooddonationapp.viewModels.SplashScreenActivityViewModel
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType

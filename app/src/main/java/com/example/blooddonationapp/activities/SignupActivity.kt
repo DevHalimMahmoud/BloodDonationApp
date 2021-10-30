@@ -8,14 +8,16 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.blooddonationapp.R
-import com.example.blooddonationapp.utils.FirebaseAuthSingleton
+import com.example.blooddonationapp.viewModels.SignupActivityViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class SignupActivity : AppCompatActivity() {
-    private val mAuth = FirebaseAuthSingleton
+    private val model: SignupActivityViewModel by viewModels()
+
     var checkBox1: CheckBox? = null
     var checkBox2: CheckBox? = null
     var checkBox3: CheckBox? = null
@@ -50,17 +52,16 @@ class SignupActivity : AppCompatActivity() {
     private fun signUp() {
         sign_up!!.setOnClickListener { v ->
             if (notEmpty()) {
-                mAuth.instance!!.createUserWithEmailAndPassword(
-                    textbox_Email!!.text.toString(),
-                    textbox_Password!!.text.toString()
-                )
+                model.email = textbox_Email!!.text.toString()
+                model.password = textbox_Password!!.text.toString()
+                model.createUserWithEmailAndPasswordResult
                     .addOnCompleteListener((v.context as Activity)) { task ->
                         if (task.isSuccessful) {
                             addUserDataToFirestore()
                         } else {
                             Toast.makeText(
                                 applicationContext,
-                                "Please try Again",
+                                "${task.result}",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -76,16 +77,15 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun addUserDataToFirestore() {
-        val id = mAuth.instance!!.currentUser!!.uid
-        db.collection("users").document(id)
-            .set(dataMap())
+        dataMap()
+        model.addDataResult
             .addOnSuccessListener {
                 verifyEmail()
                 startActivity()
             }
             .addOnFailureListener {
                 Toast.makeText(applicationContext, "Please try Again", Toast.LENGTH_SHORT).show()
-                mAuth.instance!!.currentUser!!.delete()
+                model.currentUser!!.delete()
             }
     }
 
@@ -101,37 +101,38 @@ class SignupActivity : AppCompatActivity() {
             "User Created Successfully Pleas Verify your E-mail",
             Toast.LENGTH_LONG
         ).show()
-        mAuth.instance!!.currentUser!!.sendEmailVerification()
+        model.emailEmailVerificationResult
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d(ContentValues.TAG, "Email sent.")
                 }
             }
+
     }
 
     private fun notEmpty(): Boolean {
         return !(textbox_Name!!.text.toString() == "" || textbox_Address!!.text.toString() == "" || textbox_Age!!.text.toString() == "" || textbox_National!!.text.toString() == "")
     }
 
-    private fun dataMap(): Map<String, Any> {
-        val UserData: MutableMap<String, Any> = HashMap()
-        UserData["user_type"] = "user"
-        UserData["name"] = textbox_Name!!.text.toString()
-        UserData["age"] = textbox_Age!!.text.toString()
-        UserData["national_id"] = textbox_National!!.text.toString()
-        UserData["address"] = textbox_Address!!.text.toString()
-        UserData["blood_type"] =
+    private fun dataMap() {
+
+        model.data["user_type"] = "user"
+        model.data["name"] = textbox_Name!!.text.toString()
+        model.data["age"] = textbox_Age!!.text.toString()
+        model.data["national_id"] = textbox_National!!.text.toString()
+        model.data["address"] = textbox_Address!!.text.toString()
+        model.data["blood_type"] =
             Spinner_BloodType1!!.selectedItem.toString() + Spinner_BloodType2!!.selectedItem.toString()
-        UserData["num_of_donation"] = 0
+        model.data["num_of_donation"] = 0
         if (male!!.isChecked) {
-            UserData["gender"] = "male"
+            model.data["gender"] = "male"
         } else {
-            UserData["gender"] = "female"
+            model.data["gender"] = "female"
         }
-        UserData["can_donate"] =
+        model.data["can_donate"] =
             !(checkBox1!!.isChecked || checkBox2!!.isChecked || checkBox3!!.isChecked || checkBox4!!.isChecked ||
                     checkBox5!!.isChecked || checkBox6!!.isChecked || checkBox7!!.isChecked || checkBox8!!.isChecked || checkBox9!!.isChecked || checkBox10!!.isChecked)
-        return UserData
+
     }
 
     private fun dataBinding() {
